@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Home</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="book.css">
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html" class="active">Home</a></li><li class="chapter-item affix "><li class="part-title">src</li><li class="chapter-item "><a href="src/factory/index.html">❱ factory</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="src/factory/IGOFactory.sol/contract.IGOFactory.html">IGOFactory</a></li><li class="chapter-item "><a href="src/factory/IIGOFactory.sol/interface.IIGOFactory.html">IIGOFactory</a></li><li class="chapter-item "><a href="src/factory/IIGOFactoryInternal.sol/interface.IIGOFactoryInternal.html">IIGOFactoryInternal</a></li></ol></li><li class="chapter-item "><a href="src/lzApp/index.html">❱ lzApp</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="src/lzApp/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="src/lzApp/interfaces/internal/index.html">❱ internal</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="src/lzApp/interfaces/internal/IClaimFactoryInternal.sol/interface.IClaimFactoryInternal.html">IClaimFactoryInternal</a></li><li class="chapter-item "><a href="src/lzApp/interfaces/internal/ICrosschainErrorsInternal.sol/interface.ICrosschainErrorsInternal.html">ICrosschainErrorsInternal</a></li><li class="chapter-item "><a href="src/lzApp/interfaces/internal/IHostInternal.sol/interface.IHostInternal.html">IHostInternal</a></li><li class="chapter-item "><a href="src/lzApp/interfaces/internal/ITargetInternal.sol/interface.ITargetInternal.html">ITargetInternal</a></li></ol></li><li class="chapter-item "><a href="src/lzApp/interfaces/IClaimFactory.sol/interface.IClaimFactory.html">IClaimFactory</a></li><li class="chapter-item "><a href="src/lzApp/interfaces/IHost.sol/interface.IHost.html">IHost</a></li><li class="chapter-item "><a href="src/lzApp/interfaces/ITarget.sol/interface.ITarget.html">ITarget</a></li></ol></li><li class="chapter-item "><a href="src/lzApp/ClaimFactory.sol/contract.ClaimFactory.html">ClaimFactory</a></li><li class="chapter-item "><a href="src/lzApp/LzClaimRefundTargetChain.sol/contract.LzClaimRefundTargetChain.html">LzClaimRefundTargetChain</a></li><li class="chapter-item "><a href="src/lzApp/LzStorage.sol/library.LzStorage.html">LzStorage</a></li><li class="chapter-item "><a href="src/lzApp/LzVestingHostChain.sol/contract.LzVestingHostChain.html">LzVestingHostChain</a></li></ol></li><li class="chapter-item "><a href="src/readable/index.html">❱ readable</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="src/readable/IGOReadable.sol/contract.IGOReadable.html">IGOReadable</a></li><li class="chapter-item "><a href="src/readable/IIGOReadable.sol/interface.IIGOReadable.html">IIGOReadable</a></li></ol></li><li class="chapter-item "><a href="src/shared/index.html">❱ shared</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="src/shared/ISharedInternal.sol/interface.ISharedInternal.html">ISharedInternal</a></li></ol></li><li class="chapter-item "><a href="src/writable/index.html">❱ writable</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="src/writable/restricted/index.html">❱ restricted</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="src/writable/restricted/IRestrictedWritable.sol/interface.IRestrictedWritable.html">IRestrictedWritable</a></li><li class="chapter-item "><a href="src/writable/restricted/IRestrictedWritableInternal.sol/interface.IRestrictedWritableInternal.html">IRestrictedWritableInternal</a></li><li class="chapter-item "><a href="src/writable/restricted/RestrictedWritable.sol/contract.RestrictedWritable.html">RestrictedWritable</a></li><li class="chapter-item "><a href="src/writable/restricted/RestrictedWritableInternal.sol/contract.RestrictedWritableInternal.html">RestrictedWritableInternal</a></li></ol></li><li class="chapter-item "><a href="src/writable/IGOWritable.sol/contract.IGOWritable.html">IGOWritable</a></li><li class="chapter-item "><a href="src/writable/IGOWritableInternal.sol/contract.IGOWritableInternal.html">IGOWritableInternal</a></li><li class="chapter-item "><a href="src/writable/IIGOWritable.sol/interface.IIGOWritable.html">IIGOWritable</a></li><li class="chapter-item "><a href="src/writable/IIGOWritableInternal.sol/interface.IIGOWritableInternal.html">IIGOWritableInternal</a></li></ol></li><li class="chapter-item "><a href="src/IGO.sol/contract.IGO.html">IGO</a></li><li class="chapter-item "><a href="src/IGOStorage.sol/library.IGOStorage.html">IGOStorage</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Seedifyfund/igo-all-in-one" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="all-in-one-igo"><a class="header" href="#all-in-one-igo"><h1 align="center"> All-In-One IGO </a></h1></h1>
+<p>Contract to use for normal &amp; VPR IGO but also any other extra cases where a project wants to allow people to buy tokens at a set price.</p>
+<p>More details on <a href="https://seedifymetastudios.atlassian.net/l/cp/bcc1Xhfr">Confluence</a></p>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<pre><code class="language-bash">yarn install &amp;&amp; forge install
+</code></pre>
+<p>Each time a new dependency is added in <code>lib/</code> run <code>forge install</code>.</p>
+<h2 id="architecture"><a class="header" href="#architecture">Architecture</a></h2>
+<p>Follow's Solidstate architecture (diamond pattern based).</p>
+<div class="table-wrapper"><table><thead><tr><th><strong>folder</strong></th><th><strong>layer</strong></th><th><strong>description</strong></th><th><strong>example</strong></th></tr></thead><tbody>
+<tr><td><strong>-</strong></td><td>internal - <code>interface</code></td><td>contains custom <code>error</code>, <code>enum</code>, <code>struct</code>&amp; <code>event</code></td><td><code>IRandomnessWritableInternal.sol</code>, <code>IRandomnessReadableInternal.sol</code></td></tr>
+<tr><td><strong>-</strong></td><td>external - <code>interface</code></td><td>common interfaces which define external and public function's prototypes</td><td><code>IRandomnessFallback.sol</code>, <code>IRandomnessReadble.sol</code>, <code>IRandomnessWritable.sol</code></td></tr>
+<tr><td><strong>readable</strong></td><td>external</td><td>set of functions which only read the storage</td><td><code>RandomnessReadable.sol</code></td></tr>
+<tr><td><strong>writable</strong></td><td>external &amp; internal</td><td>set of functions which update storage; internal function always declares in <code>xyzWritableInternal.sol</code> &amp; contains <code>modifier</code></td><td><code>RandomnessInternalWritable.sol</code>, <code>RandomnessWritable.sol</code></td></tr>
+<tr><td><strong>./</strong></td><td>storage</td><td>library for to map, access and modify storage</td><td><code>RandomnessStorage.sol</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="tests"><a class="header" href="#tests">Tests</a></h2>
+<p>Since Permit 2 has been integrated <code> --via-ir</code> compilation is compulsory to solve <code>stak too deep</code> issue.</p>
+<ul>
+<li>Run without fuzz testing, use <code>forge test -vvv --nmc Differential --via-ir</code></li>
+<li>Run with fuzz testing, use <code>forge test -vvv --ffi --via-ir</code> (takes more time as it produced random data)</li>
+</ul>
+<h3 id="generate-coverage-report"><a class="header" href="#generate-coverage-report">Generate Coverage Report</a></h3>
+<p>If <code>lcov</code> is not installed, run <code>brew install lcov</code>.
+Then run: <code>forge coverage --report lcov --ffi --nmc Differential &amp;&amp; genhtml lcov.info --branch-coverage --output-dir coverage</code></p>
+<h3 id="coverage-screenshot"><a class="header" href="#coverage-screenshot">Coverage Screenshot</a></h3>
+<img width="1501" alt="igo-coverage" src="https://user-images.githubusercontent.com/37904797/235130979-e8b8c02c-927e-47be-bfb9-5603aa35f259.png">
+<h3 id="run-github-actions-locally"><a class="header" href="#run-github-actions-locally">Run GitHub Actions Locally</a></h3>
+<ol>
+<li>Install <a href="https://github.com/nektos/act">act</a></li>
+<li>Load env var <code>source .env</code></li>
+<li>Run a job: <code>act -j foundry -s SEED</code> (hit ENTER when asked <code>Provide value for 'SEED':</code>)</li>
+</ol>
+<h2 id="run-advanced-tests"><a class="header" href="#run-advanced-tests">Run Advanced Tests</a></h2>
+<h3 id="slither"><a class="header" href="#slither">Slither</a></h3>
+<p><code>slither .</code></p>
+<p>Note: Slither has been added to GitHub actions, so it will run automatically on every <strong>push and pull requests</strong>.</p>
+<h3 id="mythril"><a class="header" href="#mythril">Mythril</a></h3>
+<p><code>myth a src/IGO.sol --solc-json mythril.config.json</code> (you can use both <code>myth a</code> and <code>mythril analyze</code>)</p>
+<h3 id="manticore"><a class="header" href="#manticore">Manticore</a></h3>
+<ol>
+<li>Run Docker container:</li>
+</ol>
+<pre><code>docker run --rm -it --platform linux/amd64 \
+-v $(pwd):/home/igo \
+baolean/manticore:latest
+</code></pre>
+<ol start="2">
+<li>
+<p>Go to mounted volume location: <code>cd /home/igo</code></p>
+</li>
+<li>
+<p>Select Solidity version</p>
+</li>
+</ol>
+<pre><code>solc-select install 0.8.17 &amp;&amp; solc-select use 0.8.17
+</code></pre>
+<ol start="4">
+<li>Run manticore:</li>
+</ol>
+<pre><code>manticore src/IGO.sol --contract IGO --solc-remaps=&quot;openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/ permit2/=lib/permit2/src/&quot;
+</code></pre>
+<h3 id="sumo"><a class="header" href="#sumo">SuMo</a></h3>
+<p>After install yarn dependencies, run <code>yarn sumo test</code> to run mutation testing.</p>
+<p><em>Note: there issues as we can specificy <code>--ffi</code> parameter when compiling with forge</em></p>
+<h3 id="gambit"><a class="header" href="#gambit">Gambit</a></h3>
+<ol>
+<li>
+<p>Install it locally, <a href="https://github.com/Certora/gambit?utm_campaign=Gambit%20Release&amp;utm_source=Medium&amp;utm_medium=Blog#installation">see GitHub</a></p>
+</li>
+<li>
+<p>Run: <code>gambit mutate --json gambit-conf.json</code></p>
+</li>
+</ol>
+<p><em>Note: gambit does not take into account specified remappings</em></p>
+<h2 id="best-practices-to-follow"><a class="header" href="#best-practices-to-follow">Best Practices to Follow</a></h2>
+<h3 id="generics"><a class="header" href="#generics">Generics</a></h3>
+<ul>
+<li>Code formatter &amp; linter: prettier, solhint, husky, lint-staged &amp; husky</li>
+<li><a href="https://book.getfoundry.sh/tutorials/best-practices">Foundry</a></li>
+</ul>
+<h3 id="security"><a class="header" href="#security">Security</a></h3>
+<ul>
+<li><a href="https://github.com/fravoll/solidity-patterns">Solidity Patterns</a></li>
+<li><a href="https://github.com/transmissions11/solcurity">Solcurity Codes</a></li>
+<li>Secureum posts <em>(<a href="https://secureum.substack.com/p/security-pitfalls-and-best-practices-101">101</a> &amp; <a href="https://secureum.substack.com/p/security-pitfalls-and-best-practices-201">101</a>: Security Pitfalls &amp; Best Practice)</em></li>
+<li><a href="https://github.com/securing/SCSVS">Smart Contract Security Verification Standard</a></li>
+<li><a href="https://swcregistry.io">SWC</a></li>
+</ul>
+<h2 id="be-prepared-for-audits"><a class="header" href="#be-prepared-for-audits">Be Prepared For Audits</a></h2>
+<p>Must Do Checklist:</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Unit (<a href="https://r-code.notion.site/TDDs-steps-cecba0a82ee6466f9f479ca553949be2">TDD</a>) &amp; integration (BDD) tests (green)</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Well refactored &amp; commented code
+<ul>
+<li><em>Use where needed: NatSpec comment, <a href="https://plantuml.com/starting">PlantUML</a>, <a href="https://github.com/naddison36/sol2uml">Sol2UML</a> (UML for Solidity)</em></li>
+</ul>
+</li>
+<li>Internal Audit - Tool Suite
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Secureum articles
+<ul>
+<li><a href="https://secureum.substack.com/p/audit-techniques-and-tools-101">Audit Techniques &amp; Tools 101</a></li>
+<li><a href="https://secureum.substack.com/p/audit-findings-101">Audit Findings 101</a></li>
+<li><a href="https://secureum.substack.com/p/audit-findings-201">Audit Findings 201</a></li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Built in Foundry:
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+fuzz testing: generate (semi-)random inputs
+<ul>
+<li><em>There is also echidna which can be used</em></li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox" checked=""/>
+differential testing</li>
+<li><input disabled="" type="checkbox" checked=""/>
+invariant testing</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Static analysers: <strong>mythril</strong>, <strong>slither</strong> (GitHub actions), securify, smartcheck, oyente
+<ul>
+<li><em>Note: solidity smt checker can be used on top for formal verification testing</em></li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Symbolic execution: manticore</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Mutation testing: SuMo, Gambit, universalmutator</li>
+<li><input disabled="" type="checkbox"/>
+Audit report generator: MythX</li>
+</ul>
+</li>
+</ul>
+<p><em>Note: For more complex contract <strong>Paper code review</strong> should be considered to check for conception &amp; logic errors.</em></p>
+<p>Other tools for a deeper analysis:</p>
+<ul>
+<li>static binary EVM analysis: rattle</li>
+<li>control flow graph: surya (integrated into VSCode extension), evm_cfg_builder</li>
+<li>disassemble EVM code: ethersplay, pyevmasm</li>
+<li>runtime verification: scribble (also done by: mythril, harvey, mythx)</li>
+<li>JSON RPC multiplexer, analysis tool wrapper &amp; test integration tool: etheno (Ethereum testing Swiss Army knife)
+<ul>
+<li><em>eliminates the complexity of tools like Echidna on large, multi-contract projects</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="deployed-addresses"><a class="header" href="#deployed-addresses">Deployed Addresses</a></h2>
+<ul>
+<li>Factory:
+<ul>
+<li>v1.0: <code>0x619BE601822B5e5DBD8afCB56431D6676CcA2734</code> <a href="https://testnet.bscscan.com/address/0x619be601822b5e5dbd8afcb56431d6676cca2734">bsc testnet</a></li>
+<li>v1.1 (vesting schedue): <code>0x35C2309555b7B44e3f889A417ec9e4f757B9717e</code> <a href="https://testnet.bscscan.com/address/0x35C2309555b7B44e3f889A417ec9e4f757B9717e">bsc testnet</a></li>
+</ul>
+</li>
+<li>IGO:
+<ul>
+<li>v1.0: <code>0x64b22ECcFC51829E4Ed7bED684CD1C8E5304E544</code> <a href="https://testnet.bscscan.com/address/0x64b22ECcFC51829E4Ed7bED684CD1C8E5304E544">bsc testnet</a></li>
+<li>v1.1 (vesting schedue): 0xA2bEe26Ac82240144038548727755EfDF8a68811`` <a href="https://testnet.bscscan.com/address/0xA2bEe26Ac82240144038548727755EfDF8a68811">bsc testnet</a></li>
+</ul>
+</li>
+<li>Vesting Schedule:
+<ul>
+<li>v1.1: <code>0xDF8bCCDB0E9609d7C358CADee6c88d8B6057d1d5</code> <a href="https://testnet.bscscan.com/address/0xDF8bCCDB0E9609d7C358CADee6c88d8B6057d1d5">bsc testnet</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="using-croscchain-factories"><a class="header" href="#using-croscchain-factories">Using Croscchain Factories</a></h3>
+<ul>
+<li>Clone <code>IGO</code> and <code>LzVestingHost</code> on Fantom (host chain) and make a call to Sepolia to <code>ClaimFactory</code>: https://testnet.ftmscan.com/tx/0x076e4a432f0dbe44c914c1b81d38386eebdd9f36da19fced40a8543b75e6cfe0 <strong>1_287_000</strong> gas used over 1_502_000</li>
+<li>Clone <code>LzClaimRefundTargetChain</code> on Sepolia (target chain) through LayerZero call - <code>event ClaimCloned(...)</code> emitted: https://sepolia.etherscan.io/tx/0xa40237a8ae52555fc0a67a515da6084035ece08403f36f9e5e0fff9994c87bc8#eventlog <strong>440_000</strong> gas used over 1_560_000</li>
+<li>Save <code>LzClaimRefundTargetChain</code> on Fantom from a call to Sepolia:
+<ul>
+<li>Sepolia: https://sepolia.etherscan.io/tx/0x6f482a475a9648076cbed955824cc88b52007a2b2e685047b2fd988940f05f54 <strong>251_000</strong> gas used over 388_000</li>
+<li>Fantom callback receipt: https://testnet.ftmscan.com/tx/0xba50af9259aa4dc432e95f363a983e4ce45b31d761b8d6c888cc69d09a494ea6#eventlog <strong>282_100</strong> gas used over 619_000</li>
+</ul>
+</li>
+</ul>
+<h2 id="git-release-flow"><a class="header" href="#git-release-flow">Git Release Flow</a></h2>
+<p><code>beta-*</code> is forked off from <code>dev</code> and merged into <code>main</code> once vetted, then <code>dev</code> must rebased from <code>main</code>.</p>
+<p>The same workflow will be applied to <code>rc-*</code></p>
+<ul>
+<li><code>beta-*</code> branches contain fixes found during frontend/backend integrations, updated ABIs &amp; new testnet addresses</li>
+<li><code>rc-*</code> branches contain audit fixes, audit report and mainnet addresses</li>
+<li><code>main</code> branch freeze latest <code>beta-*</code> and <code>rc-*</code></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="src/factory/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="src/factory/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="solidity.min.js"></script>
+
+
+    </div>
+    </body>
+</html>

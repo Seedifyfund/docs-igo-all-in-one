@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>IGOFactory</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../../book.css">
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../../../index.html">Home</a></li><li class="chapter-item affix "><li class="part-title">src</li><li class="chapter-item expanded "><a href="../../../src/factory/index.html">❱ factory</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../src/factory/IGOFactory.sol/contract.IGOFactory.html" class="active">IGOFactory</a></li><li class="chapter-item "><a href="../../../src/factory/IIGOFactory.sol/interface.IIGOFactory.html">IIGOFactory</a></li><li class="chapter-item "><a href="../../../src/factory/IIGOFactoryInternal.sol/interface.IIGOFactoryInternal.html">IIGOFactoryInternal</a></li></ol></li><li class="chapter-item "><a href="../../../src/lzApp/index.html">❱ lzApp</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../src/lzApp/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../src/lzApp/interfaces/internal/index.html">❱ internal</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../src/lzApp/interfaces/internal/IClaimFactoryInternal.sol/interface.IClaimFactoryInternal.html">IClaimFactoryInternal</a></li><li class="chapter-item "><a href="../../../src/lzApp/interfaces/internal/ICrosschainErrorsInternal.sol/interface.ICrosschainErrorsInternal.html">ICrosschainErrorsInternal</a></li><li class="chapter-item "><a href="../../../src/lzApp/interfaces/internal/IHostInternal.sol/interface.IHostInternal.html">IHostInternal</a></li><li class="chapter-item "><a href="../../../src/lzApp/interfaces/internal/ITargetInternal.sol/interface.ITargetInternal.html">ITargetInternal</a></li></ol></li><li class="chapter-item "><a href="../../../src/lzApp/interfaces/IClaimFactory.sol/interface.IClaimFactory.html">IClaimFactory</a></li><li class="chapter-item "><a href="../../../src/lzApp/interfaces/IHost.sol/interface.IHost.html">IHost</a></li><li class="chapter-item "><a href="../../../src/lzApp/interfaces/ITarget.sol/interface.ITarget.html">ITarget</a></li></ol></li><li class="chapter-item "><a href="../../../src/lzApp/ClaimFactory.sol/contract.ClaimFactory.html">ClaimFactory</a></li><li class="chapter-item "><a href="../../../src/lzApp/LzClaimRefundTargetChain.sol/contract.LzClaimRefundTargetChain.html">LzClaimRefundTargetChain</a></li><li class="chapter-item "><a href="../../../src/lzApp/LzStorage.sol/library.LzStorage.html">LzStorage</a></li><li class="chapter-item "><a href="../../../src/lzApp/LzVestingHostChain.sol/contract.LzVestingHostChain.html">LzVestingHostChain</a></li></ol></li><li class="chapter-item "><a href="../../../src/readable/index.html">❱ readable</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../src/readable/IGOReadable.sol/contract.IGOReadable.html">IGOReadable</a></li><li class="chapter-item "><a href="../../../src/readable/IIGOReadable.sol/interface.IIGOReadable.html">IIGOReadable</a></li></ol></li><li class="chapter-item "><a href="../../../src/shared/index.html">❱ shared</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../src/shared/ISharedInternal.sol/interface.ISharedInternal.html">ISharedInternal</a></li></ol></li><li class="chapter-item "><a href="../../../src/writable/index.html">❱ writable</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../src/writable/restricted/index.html">❱ restricted</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../src/writable/restricted/IRestrictedWritable.sol/interface.IRestrictedWritable.html">IRestrictedWritable</a></li><li class="chapter-item "><a href="../../../src/writable/restricted/IRestrictedWritableInternal.sol/interface.IRestrictedWritableInternal.html">IRestrictedWritableInternal</a></li><li class="chapter-item "><a href="../../../src/writable/restricted/RestrictedWritable.sol/contract.RestrictedWritable.html">RestrictedWritable</a></li><li class="chapter-item "><a href="../../../src/writable/restricted/RestrictedWritableInternal.sol/contract.RestrictedWritableInternal.html">RestrictedWritableInternal</a></li></ol></li><li class="chapter-item "><a href="../../../src/writable/IGOWritable.sol/contract.IGOWritable.html">IGOWritable</a></li><li class="chapter-item "><a href="../../../src/writable/IGOWritableInternal.sol/contract.IGOWritableInternal.html">IGOWritableInternal</a></li><li class="chapter-item "><a href="../../../src/writable/IIGOWritable.sol/interface.IIGOWritable.html">IIGOWritable</a></li><li class="chapter-item "><a href="../../../src/writable/IIGOWritableInternal.sol/interface.IIGOWritableInternal.html">IIGOWritableInternal</a></li></ol></li><li class="chapter-item "><a href="../../../src/IGO.sol/contract.IGO.html">IGO</a></li><li class="chapter-item "><a href="../../../src/IGOStorage.sol/library.IGOStorage.html">IGOStorage</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Seedifyfund/igo-all-in-one" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="igofactory"><a class="header" href="#igofactory">IGOFactory</a></h1>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/factory/IGOFactory.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="/src/factory/IIGOFactory.sol/interface.IIGOFactory.html">IIGOFactory</a>, <a href="/src/factory/IIGOFactoryInternal.sol/interface.IIGOFactoryInternal.html">IIGOFactoryInternal</a>, AccessControlEnumerable, ReentrancyGuard, NonblockingLzApp</p>
+<p>Deploy {IGO} and {IGOVesting} in single transaction through {createIGO}. Crosschain vesting and
+refund compatible with {createCrosschainIGO} - crosschain vesting is called
+{LzVestingHostChain}**.</p>
+<p>*Use LayerZero for crosschain deployment:</p>
+<ul>
+<li>{IGOFactory} deploys {IGO} and {LzVestingHostChain} on host chain through {_createIGOWithVesting},</li>
+<li>{IGOFactory} makes a request to target chain (ClaimFactory) through {createCrosschainIGO._lzSend}
+to clone a new instance of {LzClaimRefundTargetChain},</li>
+<li>{ClaimFactory.saveCrosschainClaimInHostFactory} must be <strong>manually</strong> called on target chain to
+save new {LzClaimRefundTargetChain} in here (IGOFactory) and end configuration
+({LzVestingHostChain} ownership to {IGO} and configure trusted remote from {LzVestingHostChain}
+-host chain- to {LzClaimRefundTargetChain}).*</li>
+</ul>
+<h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
+<h3 id="maxloop"><a class="header" href="#maxloop">maxLoop</a></h3>
+<pre><code class="language-solidity">uint256 public override maxLoop = 100;
+</code></pre>
+<h3 id="mingas"><a class="header" href="#mingas">minGas</a></h3>
+<pre><code class="language-solidity">uint256 public override minGas = 350_000;
+</code></pre>
+<h3 id="_igodetails"><a class="header" href="#_igodetails">_igoDetails</a></h3>
+<pre><code class="language-solidity">IGODetail[] internal _igoDetails;
+</code></pre>
+<h3 id="_igonames"><a class="header" href="#_igonames">_igoNames</a></h3>
+<pre><code class="language-solidity">mapping(string =&gt; address) internal _igoNames;
+</code></pre>
+<h3 id="crosschainclaimcontract"><a class="header" href="#crosschainclaimcontract">crosschainClaimContract</a></h3>
+<p>Save {LzClaimRefundTargetChain} address linked to an {IGO} by its name.</p>
+<p><em>Only a single claim contract per {IGO}.</em></p>
+<pre><code class="language-solidity">mapping(string =&gt; address) public override crosschainClaimContract;
+</code></pre>
+<h3 id="defaultvesting"><a class="header" href="#defaultvesting">defaultVesting</a></h3>
+<pre><code class="language-solidity">address public override defaultVesting;
+</code></pre>
+<h3 id="defaultcrosschainvesting"><a class="header" href="#defaultcrosschainvesting">defaultCrosschainVesting</a></h3>
+<pre><code class="language-solidity">address public override defaultCrosschainVesting;
+</code></pre>
+<h3 id="defaultigo"><a class="header" href="#defaultigo">defaultIGO</a></h3>
+<pre><code class="language-solidity">address public override defaultIGO;
+</code></pre>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<h3 id="constructor"><a class="header" href="#constructor">constructor</a></h3>
+<pre><code class="language-solidity">constructor(address _endpoint) NonblockingLzApp(_endpoint);
+</code></pre>
+<h3 id="createigo"><a class="header" href="#createigo">createIGO</a></h3>
+<p>Clone (minimal proxy - gas saving) and configure an {IGO} with its {IGOVesting} in a single
+transaction.</p>
+<p><em><code>setUp</code> must be <code>memory</code> type as it is updated in {_createIGOWithVesting}.</em></p>
+<pre><code class="language-solidity">function createIGO(
+    string calldata igoName,
+    IGOStorage.SetUp memory setUp,
+    string[] calldata tagIds,
+    ISharedInternal.Tag[] calldata tags,
+    IIGOVesting.ContractSetup calldata contractSetup,
+    IIGOVesting.VestingSetup calldata vestingSetup
+) external override nonReentrant onlyRole(DEFAULT_ADMIN_ROLE) returns (address igo, address vesting);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>igoName</code></td><td><code>string</code></td><td>Name of the IGO to create and configure.</td></tr>
+<tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>Struct to initialize {IGO} contract.</td></tr>
+<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td>Default tags/phase name to create at IGO initialization.</td></tr>
+<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Default tags/phase object to create at IGO initialization.</td></tr>
+<tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td>Struct to initiliaze first part of {IGOVesting} - developed by Decubate.</td></tr>
+<tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td>Struct to initiliaze second part of {IGOVesting} - developed by Decubate.</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>igo</code></td><td><code>address</code></td><td>New cloned and configured {IGO} contract.</td></tr>
+<tr><td><code>vesting</code></td><td><code>address</code></td><td>New cloned and configured {IGOVetsing} contract.</td></tr>
+</tbody></table>
+</div>
+<h3 id="createcrosschainigo"><a class="header" href="#createcrosschainigo">createCrosschainIGO</a></h3>
+<p>Clone (minimal proxy - gas saving) and configure an {IGO} with its crosschain
+{LzVestingHostChain} in a single transaction.</p>
+<p><em><code>setUp</code> must be <code>memory</code> type as it is updated in {_createIGOWithVesting}.</em></p>
+<pre><code class="language-solidity">function createCrosschainIGO(
+    CrosschainDetail calldata crosschain,
+    string calldata igoName,
+    IGOStorage.SetUp memory setUp,
+    string[] calldata tagIds,
+    ISharedInternal.Tag[] calldata tags,
+    IIGOVesting.ContractSetup calldata contractSetup,
+    IIGOVesting.VestingSetup calldata vestingSetup
+) external payable override nonReentrant onlyRole(DEFAULT_ADMIN_ROLE) returns (address igo, address vesting);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>crosschain</code></td><td><code>CrosschainDetail</code></td><td>Struct containing required crosschain details for crosschain deployment and configuration.</td></tr>
+<tr><td><code>igoName</code></td><td><code>string</code></td><td>Name of the IGO to create and configure.</td></tr>
+<tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>Struct to initialize {IGO} contract.</td></tr>
+<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td>Default tags/phase name to create at IGO initialization.</td></tr>
+<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Default tags/phase object to create at IGO initialization.</td></tr>
+<tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td>Struct to initiliaze first part of {LzVestingHostChain} - add crosschain compatibility on top of {IGOVesting} developed by Decubate.</td></tr>
+<tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td>Struct to initiliaze second part of {LzVestingHostChain} - add crosschain compatibility on top of {IGOVesting} developed by Decubate.</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>igo</code></td><td><code>address</code></td><td>New cloned and configured {IGO} contract.</td></tr>
+<tr><td><code>vesting</code></td><td><code>address</code></td><td>New cloned and configured {LzVestingHostChain} contract.</td></tr>
+</tbody></table>
+</div>
+<h3 id="updatedefaultcrosschainvesting"><a class="header" href="#updatedefaultcrosschainvesting">updateDefaultCrosschainVesting</a></h3>
+<p>Update default {LzVestingHostChain} to use in {createCrosschainIGO}.</p>
+<p>*If not set set {createCrosschainIGO} will fail with:</p>
+<ul>
+<li>{IGOFactory_DefaultCrosschainVesting_NotSet} error.*</li>
+</ul>
+<pre><code class="language-solidity">function updateDefaultCrosschainVesting(address newDefaultCrosschainVesting)
+    external
+    override
+    onlyRole(DEFAULT_ADMIN_ROLE);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>newDefaultCrosschainVesting</code></td><td><code>address</code></td><td>Default {LzVestingHostChain} to use for next {createCrosschainIGO} call.</td></tr>
+</tbody></table>
+</div>
+<h3 id="updatedefaultigoandvesting"><a class="header" href="#updatedefaultigoandvesting">updateDefaultIGOAndVesting</a></h3>
+<p>Update default {IGO} and {IGOVesting} to use in {createIGO}.</p>
+<p>*If not one of these or both not set, {createIGO} will fail with either:</p>
+<ul>
+<li>{IGOFactory_DefaultIGO_NotSet} error;</li>
+<li>{IGOFactory_DefaultVesting_NotSet} error.*</li>
+</ul>
+<pre><code class="language-solidity">function updateDefaultIGOAndVesting(address newDefaultIGO, address newDefaultVesting)
+    external
+    override
+    onlyRole(DEFAULT_ADMIN_ROLE);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>newDefaultIGO</code></td><td><code>address</code></td><td>Default {IGO} to use for next {createIGO} call.</td></tr>
+<tr><td><code>newDefaultVesting</code></td><td><code>address</code></td><td>Default {IGOVesting} to use for next {createIGO} call.</td></tr>
+</tbody></table>
+</div>
+<h3 id="setmaxloop"><a class="header" href="#setmaxloop">setMaxLoop</a></h3>
+<p>Set the maxium amount of loops to be used in {getIgosDetails}.</p>
+<pre><code class="language-solidity">function setMaxLoop(uint256 newMaxLoop) external override onlyRole(DEFAULT_ADMIN_ROLE);
+</code></pre>
+<h3 id="setmingas"><a class="header" href="#setmingas">setMinGas</a></h3>
+<p>Set the maxium amount of {gasleft()} in {createCrosschainIGO}.</p>
+<pre><code class="language-solidity">function setMinGas(uint256 newMinGas) external override onlyRole(DEFAULT_ADMIN_ROLE);
+</code></pre>
+<h3 id="getigosdetails"><a class="header" href="#getigosdetails">getIgosDetails</a></h3>
+<p>Get details of many {IGO} by batch to index items on frontend - asked by Decubate.</p>
+<pre><code class="language-solidity">function getIgosDetails(uint256 from, uint256 to)
+    external
+    view
+    override
+    returns (IGODetail[] memory igos, uint256 lastEvaludatedIndex, uint256 totalItems);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>from</code></td><td><code>uint256</code></td><td>Index to start reading from {_igoDetails}.</td></tr>
+<tr><td><code>to</code></td><td><code>uint256</code></td><td>Index to finish reading from {_igoDetails}.</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>igos</code></td><td><code>IGODetail[]</code></td><td>Details of {IGO} requested, from <code>from</code> to <code>to</code>.</td></tr>
+<tr><td><code>lastEvaludatedIndex</code></td><td><code>uint256</code></td><td>Last index evaluated within the loop - should be <code>from</code>.</td></tr>
+<tr><td><code>totalItems</code></td><td><code>uint256</code></td><td>Total amount of {IGODetail} fetched.</td></tr>
+</tbody></table>
+</div>
+<h3 id="_createigowithvesting"><a class="header" href="#_createigowithvesting">_createIGOWithVesting</a></h3>
+<p><em><code>setUp</code> must be <code>memory</code> type as it is updated here. Other parameters similar to {createIGO}
+and {createCrosschainIGO}.</em></p>
+<pre><code class="language-solidity">function _createIGOWithVesting(
+    bool isCrosschain,
+    string calldata igoName,
+    IGOStorage.SetUp memory setUp,
+    string[] calldata tagIds,
+    ISharedInternal.Tag[] calldata tags,
+    IIGOVesting.ContractSetup calldata contractSetup,
+    IIGOVesting.VestingSetup calldata vestingSetup
+) internal returns (address igo, address vesting);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>isCrosschain</code></td><td><code>bool</code></td><td>Whether to clone a {LzVestingHostChain} or {IGOVesting} instance.</td></tr>
+<tr><td><code>igoName</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td></td></tr>
+<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td></td></tr>
+<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td></td></tr>
+<tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td></td></tr>
+<tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td></td></tr>
+</tbody></table>
+</div>
+<h3 id="_nonblockinglzreceive"><a class="header" href="#_nonblockinglzreceive">_nonblockingLzReceive</a></h3>
+<p><em>LayerZero base function override to make actions on crosschain message receipt.</em></p>
+<pre><code class="language-solidity">function _nonblockingLzReceive(uint16, bytes memory, uint64, bytes memory _payload) internal override;
+</code></pre>
+<h3 id="_updatestorageonclaimfactorycallback"><a class="header" href="#_updatestorageonclaimfactorycallback">_updateStorageOnClaimFactoryCallback</a></h3>
+<p><em>Update {LzVestingHostChain} ownership to {IGO} and configure trusted remote from
+{LzVestingHostChain} to {LzClaimRefundTargetChain} with the riht host chain id (LayerZero
+chain id specific).</em></p>
+<pre><code class="language-solidity">function _updateStorageOnClaimFactoryCallback(bytes memory data) internal;
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../src/factory/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../src/factory/IIGOFactory.sol/interface.IIGOFactory.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../src/factory/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../src/factory/IIGOFactory.sol/interface.IIGOFactory.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../../solidity.min.js"></script>
+
+
+    </div>
+    </body>
+</html>
