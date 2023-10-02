@@ -171,7 +171,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="igofactory"><a class="header" href="#igofactory">IGOFactory</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/factory/IGOFactory.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/factory/IGOFactory.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/src/factory/IIGOFactory.sol/interface.IIGOFactory.html">IIGOFactory</a>, <a href="/src/factory/IIGOFactoryInternal.sol/interface.IIGOFactoryInternal.html">IIGOFactoryInternal</a>, AccessControlEnumerable, ReentrancyGuard, NonblockingLzApp</p>
 <p>Deploy {IGO} and {IGOVesting} in single transaction through {createIGO}. Crosschain vesting and
@@ -225,8 +225,8 @@ transaction.</p>
 <pre><code class="language-solidity">function createIGO(
     string calldata igoName,
     IGOStorage.SetUp memory setUp,
-    string[] calldata tagIds,
-    ISharedInternal.Tag[] calldata tags,
+    string[] calldata phaseIds,
+    ISharedInternal.Phase[] calldata phases,
     IIGOVesting.ContractSetup calldata contractSetup,
     IIGOVesting.VestingSetup calldata vestingSetup
 ) external override nonReentrant onlyRole(DEFAULT_ADMIN_ROLE) returns (address igo, address vesting);
@@ -235,8 +235,8 @@ transaction.</p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>igoName</code></td><td><code>string</code></td><td>Name of the IGO to create and configure.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>Struct to initialize {IGO} contract.</td></tr>
-<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td>Default tags/phase name to create at IGO initialization.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Default tags/phase object to create at IGO initialization.</td></tr>
+<tr><td><code>phaseIds</code></td><td><code>string[]</code></td><td>Default phases/phase name to create at IGO initialization.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Default phases/phase object to create at IGO initialization.</td></tr>
 <tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td>Struct to initiliaze first part of {IGOVesting} - developed by Decubate.</td></tr>
 <tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td>Struct to initiliaze second part of {IGOVesting} - developed by Decubate.</td></tr>
 </tbody></table>
@@ -255,8 +255,8 @@ transaction.</p>
     CrosschainDetail calldata crosschain,
     string calldata igoName,
     IGOStorage.SetUp memory setUp,
-    string[] calldata tagIds,
-    ISharedInternal.Tag[] calldata tags,
+    string[] calldata phaseIds,
+    ISharedInternal.Phase[] calldata phases,
     IIGOVesting.ContractSetup calldata contractSetup,
     IIGOVesting.VestingSetup calldata vestingSetup
 ) external payable override nonReentrant onlyRole(DEFAULT_ADMIN_ROLE) returns (address igo, address vesting);
@@ -266,8 +266,8 @@ transaction.</p>
 <tr><td><code>crosschain</code></td><td><code>CrosschainDetail</code></td><td>Struct containing required crosschain details for crosschain deployment and configuration.</td></tr>
 <tr><td><code>igoName</code></td><td><code>string</code></td><td>Name of the IGO to create and configure.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>Struct to initialize {IGO} contract.</td></tr>
-<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td>Default tags/phase name to create at IGO initialization.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Default tags/phase object to create at IGO initialization.</td></tr>
+<tr><td><code>phaseIds</code></td><td><code>string[]</code></td><td>Default phases/phase name to create at IGO initialization.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Default phases/phase object to create at IGO initialization.</td></tr>
 <tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td>Struct to initiliaze first part of {LzVestingHostChain} - add crosschain compatibility on top of {IGOVesting} developed by Decubate.</td></tr>
 <tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td>Struct to initiliaze second part of {LzVestingHostChain} - add crosschain compatibility on top of {IGOVesting} developed by Decubate.</td></tr>
 </tbody></table>
@@ -348,8 +348,8 @@ and {createCrosschainIGO}.</em></p>
     bool isCrosschain,
     string calldata igoName,
     IGOStorage.SetUp memory setUp,
-    string[] calldata tagIds,
-    ISharedInternal.Tag[] calldata tags,
+    string[] calldata phaseIds,
+    ISharedInternal.Phase[] calldata phases,
     IIGOVesting.ContractSetup calldata contractSetup,
     IIGOVesting.VestingSetup calldata vestingSetup
 ) internal returns (address igo, address vesting);
@@ -359,8 +359,8 @@ and {createCrosschainIGO}.</em></p>
 <tr><td><code>isCrosschain</code></td><td><code>bool</code></td><td>Whether to clone a {LzVestingHostChain} or {IGOVesting} instance.</td></tr>
 <tr><td><code>igoName</code></td><td><code>string</code></td><td></td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td></td></tr>
-<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td></td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td></td></tr>
+<tr><td><code>phaseIds</code></td><td><code>string[]</code></td><td></td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td></td></tr>
 <tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td></td></tr>
 <tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td></td></tr>
 </tbody></table>

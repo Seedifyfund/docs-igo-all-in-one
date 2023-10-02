@@ -171,23 +171,23 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="isharedinternal"><a class="header" href="#isharedinternal">ISharedInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/shared/ISharedInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/shared/ISharedInternal.sol">Git Source</a></p>
 <p>Interface shared betwen all modules of the IGO contract.</p>
 <p><em>Defines shared enum, struct, events and errors.</em></p>
 <h2 id="structs"><a class="header" href="#structs">Structs</a></h2>
-<h3 id="tag"><a class="header" href="#tag">Tag</a></h3>
-<p>Shared struct representing the data of a tag.</p>
-<pre><code class="language-solidity">struct Tag {
+<h3 id="phase"><a class="header" href="#phase">Phase</a></h3>
+<p>Shared struct representing the data of a phase.</p>
+<pre><code class="language-solidity">struct Phase {
     Status status;
     bytes32 merkleRoot;
     uint128 startAt;
     uint128 endAt;
-    uint256 maxTagCap;
+    uint256 maxPhaseCap;
 }
 </code></pre>
 <h2 id="enums"><a class="header" href="#enums">Enums</a></h2>
 <h3 id="status"><a class="header" href="#status">Status</a></h3>
-<p>Shared enum representing the different status of a tag or the whole IGO.</p>
+<p>Shared enum representing the different status of a phase or the whole IGO.</p>
 <pre><code class="language-solidity">enum Status {
     NOT_STARTED,
     OPENED,

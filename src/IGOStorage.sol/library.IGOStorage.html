@@ -171,7 +171,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="igostorage"><a class="header" href="#igostorage">IGOStorage</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/IGOStorage.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/IGOStorage.sol">Git Source</a></p>
 <p><strong>Author:</strong>
 https://github.com/Theo6890</p>
 <p>Mapps the storage layout of the {IGO} contract.</p>
@@ -198,17 +198,17 @@ https://github.com/Theo6890</p>
     address paymentToken;
     address permit2;
     uint256 grandTotal;
-    uint256 summedMaxTagCap;
+    uint256 summedMaxPhaseCap;
     uint256 refundFeeDecimals;
 }
 </code></pre>
-<h3 id="tags"><a class="header" href="#tags">Tags</a></h3>
-<p>Struct reprensenting the setup of each tag of the IGO.</p>
-<p><em>Status of the tag is the only value that can be updated by IGO contract itself due to user's
+<h3 id="phases"><a class="header" href="#phases">Phases</a></h3>
+<p>Struct reprensenting the setup of each phase of the IGO.</p>
+<p><em>Status of the phase is the only value that can be updated by IGO contract itself due to user's
 interactions with the contract.</em></p>
-<pre><code class="language-solidity">struct Tags {
+<pre><code class="language-solidity">struct Phases {
     string[] ids;
-    mapping(string =&gt; ISharedInternal.Tag) data;
+    mapping(string =&gt; ISharedInternal.Phase) data;
 }
 </code></pre>
 <h3 id="ledger"><a class="header" href="#ledger">Ledger</a></h3>
@@ -217,7 +217,7 @@ the IGO contract.</p>
 <pre><code class="language-solidity">struct Ledger {
     ISharedInternal.Status status;
     uint256 totalRaised;
-    mapping(string =&gt; uint256) raisedInTag;
+    mapping(string =&gt; uint256) raisedInPhase;
     mapping(address =&gt; mapping(string =&gt; uint256)) allocationReservedByIn;
 }
 </code></pre>
@@ -225,7 +225,7 @@ the IGO contract.</p>
 <p>Struct reprensenting the whole storage layout of the IGO contract.</p>
 <pre><code class="language-solidity">struct IGOStruct {
     SetUp setUp;
-    Tags tags;
+    Phases phases;
     Ledger ledger;
 }
 </code></pre>

@@ -171,17 +171,17 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="irestrictedwritableinternal"><a class="header" href="#irestrictedwritableinternal">IRestrictedWritableInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/restricted/IRestrictedWritableInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/restricted/IRestrictedWritableInternal.sol">Git Source</a></p>
 <p>Defines struct, event and error used in {RestrictedWritableInternal} &amp; {RestrictedWritable}.</p>
 <h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
 <h3 id="restrictedwritableinternal_differentarrayslength"><a class="header" href="#restrictedwritableinternal_differentarrayslength">RestrictedWritableInternal_DifferentArraysLength</a></h3>
 <pre><code class="language-solidity">error RestrictedWritableInternal_DifferentArraysLength();
 </code></pre>
-<h3 id="restrictedwritableinternal_emptytag"><a class="header" href="#restrictedwritableinternal_emptytag">RestrictedWritableInternal_EmptyTag</a></h3>
-<pre><code class="language-solidity">error RestrictedWritableInternal_EmptyTag();
+<h3 id="restrictedwritableinternal_emptyphase"><a class="header" href="#restrictedwritableinternal_emptyphase">RestrictedWritableInternal_EmptyPhase</a></h3>
+<pre><code class="language-solidity">error RestrictedWritableInternal_EmptyPhase();
 </code></pre>
-<h3 id="restrictedwritableinternal_summedmaxtagcapgtgrandtotal"><a class="header" href="#restrictedwritableinternal_summedmaxtagcapgtgrandtotal">RestrictedWritableInternal_SummedMaxTagCapGtGrandTotal</a></h3>
-<pre><code class="language-solidity">error RestrictedWritableInternal_SummedMaxTagCapGtGrandTotal(uint256 greaterBy);
+<h3 id="restrictedwritableinternal_summedmaxphasecapgtgrandtotal"><a class="header" href="#restrictedwritableinternal_summedmaxphasecapgtgrandtotal">RestrictedWritableInternal_SummedMaxPhaseCapGtGrandTotal</a></h3>
+<pre><code class="language-solidity">error RestrictedWritableInternal_SummedMaxPhaseCapGtGrandTotal(uint256 greaterBy);
 </code></pre>
 <h3 id="restrictedwritable_init_owneriszeroaddr"><a class="header" href="#restrictedwritable_init_owneriszeroaddr">RestrictedWritable_Init_OwnerIsZeroAddr</a></h3>
 <pre><code class="language-solidity">error RestrictedWritable_Init_OwnerIsZeroAddr();
@@ -202,8 +202,8 @@
 <p><em>Thrown when merkle root is equal to bytes32(0).</em></p>
 <pre><code class="language-solidity">error RestrictedWritable_EmptyMerkleRoot();
 </code></pre>
-<h3 id="restrictedwritable_emptytag"><a class="header" href="#restrictedwritable_emptytag">RestrictedWritable_EmptyTag</a></h3>
-<pre><code class="language-solidity">error RestrictedWritable_EmptyTag();
+<h3 id="restrictedwritable_emptyphase"><a class="header" href="#restrictedwritable_emptyphase">RestrictedWritable_EmptyPhase</a></h3>
+<pre><code class="language-solidity">error RestrictedWritable_EmptyPhase();
 </code></pre>
 <h3 id="restrictedwritable_endinpast"><a class="header" href="#restrictedwritable_endinpast">RestrictedWritable_EndInPast</a></h3>
 <pre><code class="language-solidity">error RestrictedWritable_EndInPast();

@@ -171,13 +171,13 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="iigowritableinternal"><a class="header" href="#iigowritableinternal">IIGOWritableInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/IIGOWritableInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/IIGOWritableInternal.sol">Git Source</a></p>
 <p>Internal interface of <code>IGOWritable</code> which defines strcutures, events  and errors.</p>
 <h2 id="events"><a class="header" href="#events">Events</a></h2>
 <h3 id="allocationreserved"><a class="header" href="#allocationreserved">AllocationReserved</a></h3>
 <p>Emitted only in {IGOWritable.reserveAllocation}.</p>
 <pre><code class="language-solidity">event AllocationReserved(
-    string indexed tagId, address indexed buyer, uint256 indexed maxAllocation, address paymentToken
+    string indexed phaseId, address indexed buyer, uint256 indexed maxAllocation, address paymentToken
 );
 </code></pre>
 <h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
@@ -189,9 +189,9 @@
 <p>Thrown when the grand total to be raised for this IGO is exceeded.</p>
 <pre><code class="language-solidity">error IGOWritable_GrandTotalExceeded(uint256 grandTotal, uint256 exceedsBy);
 </code></pre>
-<h3 id="igowritable_maxtagcapexceeded"><a class="header" href="#igowritable_maxtagcapexceeded">IGOWritable_MaxTagCapExceeded</a></h3>
-<p>Thrown when the cap (maximum amount) of the current tag is exceeded.</p>
-<pre><code class="language-solidity">error IGOWritable_MaxTagCapExceeded(string tagId, uint256 maxTagCap, uint256 exceedsBy);
+<h3 id="igowritable_maxphasecapexceeded"><a class="header" href="#igowritable_maxphasecapexceeded">IGOWritable_MaxPhaseCapExceeded</a></h3>
+<p>Thrown when the cap (maximum amount) of the current phase is exceeded.</p>
+<pre><code class="language-solidity">error IGOWritable_MaxPhaseCapExceeded(string phaseId, uint256 maxPhaseCap, uint256 exceedsBy);
 </code></pre>
 <h3 id="igowritableinternal_accountnotauthorized"><a class="header" href="#igowritableinternal_accountnotauthorized">IGOWritableInternal_AccountNotAuthorized</a></h3>
 <p>Thrown when <code>msg.sender</code> is not the buyer.</p>
@@ -205,13 +205,13 @@
 <p>Thrown when the IGO is not opened.</p>
 <pre><code class="language-solidity">error IGOWritableInternal_IGONotOpened(ISharedInternal.Status current);
 </code></pre>
-<h3 id="igowritableinternal_tagnotopened"><a class="header" href="#igowritableinternal_tagnotopened">IGOWritableInternal_TagNotOpened</a></h3>
-<p>Thrown when the tag is not opened.</p>
-<pre><code class="language-solidity">error IGOWritableInternal_TagNotOpened(string tagId, ISharedInternal.Status current);
+<h3 id="igowritableinternal_phasenotopened"><a class="header" href="#igowritableinternal_phasenotopened">IGOWritableInternal_PhaseNotOpened</a></h3>
+<p>Thrown when the phase is not opened.</p>
+<pre><code class="language-solidity">error IGOWritableInternal_PhaseNotOpened(string phaseId, ISharedInternal.Status current);
 </code></pre>
 <h2 id="structs"><a class="header" href="#structs">Structs</a></h2>
 <h3 id="allocation"><a class="header" href="#allocation">Allocation</a></h3>
-<p>Struct representing an allocation of a wallet for a specific tag for
+<p>Struct representing an allocation of a wallet for a specific phase for
 {IGOWritable.reserveAllocation} function.</p>
 <p>*Backend is in charge of generating an allocation, which will depends on the sale type:</p>
 <ul>
@@ -222,7 +222,7 @@ in-game tasks: +33% from base price,
 etc...*</li>
 </ul>
 <pre><code class="language-solidity">struct Allocation {
-    string tagId;
+    string phaseId;
     address account;
     uint256 maxAllocation;
     uint256 refundFee;

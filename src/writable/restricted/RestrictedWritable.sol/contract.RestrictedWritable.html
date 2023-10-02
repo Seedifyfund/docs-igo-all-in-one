@@ -171,7 +171,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="restrictedwritable"><a class="header" href="#restrictedwritable">RestrictedWritable</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/restricted/RestrictedWritable.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/restricted/RestrictedWritable.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/src/writable/restricted/IRestrictedWritable.sol/interface.IRestrictedWritable.html">IRestrictedWritable</a>, <a href="/src/writable/restricted/RestrictedWritableInternal.sol/contract.RestrictedWritableInternal.html">RestrictedWritableInternal</a>, AccessControlEnumerable, Initializable</p>
 <p><em>Inherits from <code>ISharedInternal</code> will create <code>error[5005]: Linearization of inheritance graph impossible</code></em></p>
@@ -181,16 +181,16 @@
 <pre><code class="language-solidity">function initialize(
     address owner,
     IGOStorage.SetUp calldata setUp,
-    string[] calldata tagIds_,
-    ISharedInternal.Tag[] calldata tags
+    string[] calldata phaseIds_,
+    ISharedInternal.Phase[] calldata phases
 ) external override reinitializer(2) onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>owner</code></td><td><code>address</code></td><td>The address interacting with {IGOFactory} through {IGOFactory.createIGO} or {IGOFactory.createCrosschainIGO} which can call <code>onlyRole(DEFAULT_ADMIN_ROLE)</code> functions.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>{IGOStorage.SetUp} struct to be saved.</td></tr>
-<tr><td><code>tagIds_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>tags</code> - can be empty.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Array of {ISharedInternal.Tag[} to be saved - can be empty.</td></tr>
+<tr><td><code>phaseIds_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>phases</code> - can be empty.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Array of {ISharedInternal.Phase[} to be saved - can be empty.</td></tr>
 </tbody></table>
 </div>
 <h3 id="openigo"><a class="header" href="#openigo">openIGO</a></h3>
@@ -212,60 +212,66 @@ Deployment and owner is set in same transaction IGOFactory.createIGO so no one c
 the IGOFactory for owner rights.</em></p>
 <pre><code class="language-solidity">function setOwner() external override initializer;
 </code></pre>
-<h3 id="updatesettag"><a class="header" href="#updatesettag">updateSetTag</a></h3>
-<p><em>Update or create a tag with all its data.</em></p>
-<pre><code class="language-solidity">function updateSetTag(string calldata tagId_, ISharedInternal.Tag calldata tag_)
+<h3 id="updatesetphase"><a class="header" href="#updatesetphase">updateSetPhase</a></h3>
+<p><em>Update or create a phase with all its data.</em></p>
+<pre><code class="language-solidity">function updateSetPhase(string calldata phaseId_, ISharedInternal.Phase calldata phase_)
     external
     override
     onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId_</code></td><td><code>string</code></td><td>Identifier of tag to set or update.</td></tr>
-<tr><td><code>tag_</code></td><td><code>ISharedInternal.Tag</code></td><td>Struct {ISharedInternal.Tag} containing tag's data to be saved.</td></tr>
+<tr><td><code>phaseId_</code></td><td><code>string</code></td><td>Identifier of phase to set or update.</td></tr>
+<tr><td><code>phase_</code></td><td><code>ISharedInternal.Phase</code></td><td>Struct {ISharedInternal.Phase} containing phase's data to be saved.</td></tr>
 </tbody></table>
 </div>
-<h3 id="updatesettags"><a class="header" href="#updatesettags">updateSetTags</a></h3>
-<p><em>Update or create multiple tags with all their data.</em></p>
-<pre><code class="language-solidity">function updateSetTags(string[] calldata tagIdentifiers_, ISharedInternal.Tag[] calldata tags_)
+<h3 id="updatesetphases"><a class="header" href="#updatesetphases">updateSetPhases</a></h3>
+<p><em>Update or create multiple phases with all their data.</em></p>
+<pre><code class="language-solidity">function updateSetPhases(string[] calldata phaseIdentifiers_, ISharedInternal.Phase[] calldata phases_)
     public
     override
     onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagIdentifiers_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>tags</code>.</td></tr>
-<tr><td><code>tags_</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Array of struct {ISharedInternal.Tag} containing tags' data to be saved.</td></tr>
+<tr><td><code>phaseIdentifiers_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>phases</code>.</td></tr>
+<tr><td><code>phases_</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Array of struct {ISharedInternal.Phase} containing phases' data to be saved.</td></tr>
 </tbody></table>
 </div>
-<h3 id="opentag"><a class="header" href="#opentag">openTag</a></h3>
-<pre><code class="language-solidity">function openTag(string calldata tagId) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="openphase"><a class="header" href="#openphase">openPhase</a></h3>
+<pre><code class="language-solidity">function openPhase(string calldata phaseId) external override onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
-<h3 id="pausetag"><a class="header" href="#pausetag">pauseTag</a></h3>
-<pre><code class="language-solidity">function pauseTag(string calldata tagId) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="pausephase"><a class="header" href="#pausephase">pausePhase</a></h3>
+<pre><code class="language-solidity">function pausePhase(string calldata phaseId) external override onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
-<h3 id="updatetagmerkleroot"><a class="header" href="#updatetagmerkleroot">updateTagMerkleRoot</a></h3>
-<p>Update the merkle root of a tag to update a single or multiple wallet allocation,
+<h3 id="updatephasemerkleroot"><a class="header" href="#updatephasemerkleroot">updatePhaseMerkleRoot</a></h3>
+<p>Update the merkle root of a phase to update a single or multiple wallet allocation,
 refund fee, payment token etc.</p>
-<pre><code class="language-solidity">function updateTagMerkleRoot(string calldata tagId, bytes32 merkleRoot)
+<pre><code class="language-solidity">function updatePhaseMerkleRoot(string calldata phaseId, bytes32 merkleRoot)
     external
     override
     onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
-<tr><td><code>merkleRoot</code></td><td><code>bytes32</code></td><td>New merkle root to be saved for this tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
+<tr><td><code>merkleRoot</code></td><td><code>bytes32</code></td><td>New merkle root to be saved for this phase.</td></tr>
 </tbody></table>
 </div>
-<h3 id="updatetagstartdate"><a class="header" href="#updatetagstartdate">updateTagStartDate</a></h3>
-<pre><code class="language-solidity">function updateTagStartDate(string calldata tagId, uint128 startAt) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="updatephasestartdate"><a class="header" href="#updatephasestartdate">updatePhaseStartDate</a></h3>
+<pre><code class="language-solidity">function updatePhaseStartDate(string calldata phaseId, uint128 startAt)
+    external
+    override
+    onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
-<h3 id="updatetagenddate"><a class="header" href="#updatetagenddate">updateTagEndDate</a></h3>
-<pre><code class="language-solidity">function updateTagEndDate(string calldata tagId, uint128 endAt) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="updatephaseenddate"><a class="header" href="#updatephaseenddate">updatePhaseEndDate</a></h3>
+<pre><code class="language-solidity">function updatePhaseEndDate(string calldata phaseId, uint128 endAt) external override onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
-<h3 id="updatetagmaxcap"><a class="header" href="#updatetagmaxcap">updateTagMaxCap</a></h3>
-<pre><code class="language-solidity">function updateTagMaxCap(string calldata tagId, uint256 maxTagCap) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="updatephasemaxcap"><a class="header" href="#updatephasemaxcap">updatePhaseMaxCap</a></h3>
+<pre><code class="language-solidity">function updatePhaseMaxCap(string calldata phaseId, uint256 maxPhaseCap)
+    external
+    override
+    onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 
                     </main>

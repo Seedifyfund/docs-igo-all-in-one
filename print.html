@@ -371,7 +371,7 @@ Audit report generator: MythX</li>
 <li><a href="src/factory/IIGOFactoryInternal.sol/interface.IIGOFactoryInternal.html">IIGOFactoryInternal</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="igofactory"><a class="header" href="#igofactory">IGOFactory</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/factory/IGOFactory.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/factory/IGOFactory.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/factory/IGOFactory.sol//src/factory/IIGOFactory.sol/interface.IIGOFactory.html">IIGOFactory</a>, <a href="src/factory/IGOFactory.sol//src/factory/IIGOFactoryInternal.sol/interface.IIGOFactoryInternal.html">IIGOFactoryInternal</a>, AccessControlEnumerable, ReentrancyGuard, NonblockingLzApp</p>
 <p>Deploy {IGO} and {IGOVesting} in single transaction through {createIGO}. Crosschain vesting and
@@ -425,8 +425,8 @@ transaction.</p>
 <pre><code class="language-solidity">function createIGO(
     string calldata igoName,
     IGOStorage.SetUp memory setUp,
-    string[] calldata tagIds,
-    ISharedInternal.Tag[] calldata tags,
+    string[] calldata phaseIds,
+    ISharedInternal.Phase[] calldata phases,
     IIGOVesting.ContractSetup calldata contractSetup,
     IIGOVesting.VestingSetup calldata vestingSetup
 ) external override nonReentrant onlyRole(DEFAULT_ADMIN_ROLE) returns (address igo, address vesting);
@@ -435,8 +435,8 @@ transaction.</p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>igoName</code></td><td><code>string</code></td><td>Name of the IGO to create and configure.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>Struct to initialize {IGO} contract.</td></tr>
-<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td>Default tags/phase name to create at IGO initialization.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Default tags/phase object to create at IGO initialization.</td></tr>
+<tr><td><code>phaseIds</code></td><td><code>string[]</code></td><td>Default phases/phase name to create at IGO initialization.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Default phases/phase object to create at IGO initialization.</td></tr>
 <tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td>Struct to initiliaze first part of {IGOVesting} - developed by Decubate.</td></tr>
 <tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td>Struct to initiliaze second part of {IGOVesting} - developed by Decubate.</td></tr>
 </tbody></table>
@@ -455,8 +455,8 @@ transaction.</p>
     CrosschainDetail calldata crosschain,
     string calldata igoName,
     IGOStorage.SetUp memory setUp,
-    string[] calldata tagIds,
-    ISharedInternal.Tag[] calldata tags,
+    string[] calldata phaseIds,
+    ISharedInternal.Phase[] calldata phases,
     IIGOVesting.ContractSetup calldata contractSetup,
     IIGOVesting.VestingSetup calldata vestingSetup
 ) external payable override nonReentrant onlyRole(DEFAULT_ADMIN_ROLE) returns (address igo, address vesting);
@@ -466,8 +466,8 @@ transaction.</p>
 <tr><td><code>crosschain</code></td><td><code>CrosschainDetail</code></td><td>Struct containing required crosschain details for crosschain deployment and configuration.</td></tr>
 <tr><td><code>igoName</code></td><td><code>string</code></td><td>Name of the IGO to create and configure.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>Struct to initialize {IGO} contract.</td></tr>
-<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td>Default tags/phase name to create at IGO initialization.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Default tags/phase object to create at IGO initialization.</td></tr>
+<tr><td><code>phaseIds</code></td><td><code>string[]</code></td><td>Default phases/phase name to create at IGO initialization.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Default phases/phase object to create at IGO initialization.</td></tr>
 <tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td>Struct to initiliaze first part of {LzVestingHostChain} - add crosschain compatibility on top of {IGOVesting} developed by Decubate.</td></tr>
 <tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td>Struct to initiliaze second part of {LzVestingHostChain} - add crosschain compatibility on top of {IGOVesting} developed by Decubate.</td></tr>
 </tbody></table>
@@ -548,8 +548,8 @@ and {createCrosschainIGO}.</em></p>
     bool isCrosschain,
     string calldata igoName,
     IGOStorage.SetUp memory setUp,
-    string[] calldata tagIds,
-    ISharedInternal.Tag[] calldata tags,
+    string[] calldata phaseIds,
+    ISharedInternal.Phase[] calldata phases,
     IIGOVesting.ContractSetup calldata contractSetup,
     IIGOVesting.VestingSetup calldata vestingSetup
 ) internal returns (address igo, address vesting);
@@ -559,8 +559,8 @@ and {createCrosschainIGO}.</em></p>
 <tr><td><code>isCrosschain</code></td><td><code>bool</code></td><td>Whether to clone a {LzVestingHostChain} or {IGOVesting} instance.</td></tr>
 <tr><td><code>igoName</code></td><td><code>string</code></td><td></td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td></td></tr>
-<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td></td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td></td></tr>
+<tr><td><code>phaseIds</code></td><td><code>string[]</code></td><td></td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td></td></tr>
 <tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td></td></tr>
 <tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td></td></tr>
 </tbody></table>
@@ -576,7 +576,7 @@ chain id specific).</em></p>
 <pre><code class="language-solidity">function _updateStorageOnClaimFactoryCallback(bytes memory data) internal;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="iigofactory"><a class="header" href="#iigofactory">IIGOFactory</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/factory/IIGOFactory.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/factory/IIGOFactory.sol">Git Source</a></p>
 <p>Defines external and public functions for {IGOFactory}.</p>
 <h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
 <h3 id="createigo-1"><a class="header" href="#createigo-1">createIGO</a></h3>
@@ -586,8 +586,8 @@ transaction.</p>
 <pre><code class="language-solidity">function createIGO(
     string calldata igoName,
     IGOStorage.SetUp memory setUp,
-    string[] calldata tagIds,
-    ISharedInternal.Tag[] calldata tags,
+    string[] calldata phaseIds,
+    ISharedInternal.Phase[] calldata phases,
     IIGOVesting.ContractSetup calldata contractSetup,
     IIGOVesting.VestingSetup calldata vestingSetup
 ) external returns (address igo, address vesting);
@@ -596,8 +596,8 @@ transaction.</p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>igoName</code></td><td><code>string</code></td><td>Name of the IGO to create and configure.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>Struct to initialize {IGO} contract.</td></tr>
-<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td>Default tags/phase name to create at IGO initialization.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Default tags/phase object to create at IGO initialization.</td></tr>
+<tr><td><code>phaseIds</code></td><td><code>string[]</code></td><td>Default phases/phase name to create at IGO initialization.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Default phases/phase object to create at IGO initialization.</td></tr>
 <tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td>Struct to initiliaze first part of {IGOVesting} - developed by Decubate.</td></tr>
 <tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td>Struct to initiliaze second part of {IGOVesting} - developed by Decubate.</td></tr>
 </tbody></table>
@@ -616,8 +616,8 @@ transaction.</p>
     IIGOFactoryInternal.CrosschainDetail calldata crosschain,
     string calldata igoName,
     IGOStorage.SetUp memory setUp,
-    string[] calldata tagIds,
-    ISharedInternal.Tag[] calldata tags,
+    string[] calldata phaseIds,
+    ISharedInternal.Phase[] calldata phases,
     IIGOVesting.ContractSetup calldata contractSetup,
     IIGOVesting.VestingSetup calldata vestingSetup
 ) external payable returns (address igo, address vesting);
@@ -627,8 +627,8 @@ transaction.</p>
 <tr><td><code>crosschain</code></td><td><code>IIGOFactoryInternal.CrosschainDetail</code></td><td>Struct containing required crosschain details for crosschain deployment and configuration.</td></tr>
 <tr><td><code>igoName</code></td><td><code>string</code></td><td>Name of the IGO to create and configure.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>Struct to initialize {IGO} contract.</td></tr>
-<tr><td><code>tagIds</code></td><td><code>string[]</code></td><td>Default tags/phase name to create at IGO initialization.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Default tags/phase object to create at IGO initialization.</td></tr>
+<tr><td><code>phaseIds</code></td><td><code>string[]</code></td><td>Default phases/phase name to create at IGO initialization.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Default phases/phase object to create at IGO initialization.</td></tr>
 <tr><td><code>contractSetup</code></td><td><code>IIGOVesting.ContractSetup</code></td><td>Struct to initiliaze first part of {LzVestingHostChain} - add crosschain compatibility on top of {IGOVesting} developed by Decubate.</td></tr>
 <tr><td><code>vestingSetup</code></td><td><code>IIGOVesting.VestingSetup</code></td><td>Struct to initiliaze second part of {LzVestingHostChain} - add crosschain compatibility on top of {IGOVesting} developed by Decubate.</td></tr>
 </tbody></table>
@@ -746,7 +746,7 @@ transaction.</p>
 <tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Minimum amount of {gasleft()} in {createCrosschainIGO}.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="iigofactoryinternal"><a class="header" href="#iigofactoryinternal">IIGOFactoryInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/factory/IIGOFactoryInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/factory/IIGOFactoryInternal.sol">Git Source</a></p>
 <p>Internal interface of {IGOFactory} which defines strcutures, events and errors.</p>
 <h2 id="events"><a class="header" href="#events">Events</a></h2>
 <h3 id="defaultvestingupdated"><a class="header" href="#defaultvestingupdated">DefaultVestingUpdated</a></h3>
@@ -861,7 +861,7 @@ transaction.</p>
 <li><a href="src/lzApp/interfaces/internal/ITargetInternal.sol/interface.ITargetInternal.html">ITargetInternal</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="iclaimfactoryinternal"><a class="header" href="#iclaimfactoryinternal">IClaimFactoryInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/interfaces/internal/IClaimFactoryInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/interfaces/internal/IClaimFactoryInternal.sol">Git Source</a></p>
 <p>Internal interface of {ClaimFactory} which defines strcutures, events and errors.</p>
 <h2 id="events-1"><a class="header" href="#events-1">Events</a></h2>
 <h3 id="claimcloned"><a class="header" href="#claimcloned">ClaimCloned</a></h3>
@@ -905,7 +905,7 @@ transaction.</p>
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="icrosschainerrorsinternal"><a class="header" href="#icrosschainerrorsinternal">ICrosschainErrorsInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/interfaces/internal/ICrosschainErrorsInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/interfaces/internal/ICrosschainErrorsInternal.sol">Git Source</a></p>
 <p>Internal interface to define shared crosschain errors in {LzClaimRefundTargetChain} and
 {LzVestingHostChain}.</p>
 <h2 id="errors-2"><a class="header" href="#errors-2">Errors</a></h2>
@@ -922,7 +922,7 @@ transaction.</p>
 <pre><code class="language-solidity">error SameChains_HostIsTarget();
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ihostinternal"><a class="header" href="#ihostinternal">IHostInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/interfaces/internal/IHostInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/interfaces/internal/IHostInternal.sol">Git Source</a></p>
 <p>Internal interface of {LzVestingHostChain} which defines strcutures, events and errors.</p>
 <h2 id="events-2"><a class="header" href="#events-2">Events</a></h2>
 <h3 id="hostchainclaim"><a class="header" href="#hostchainclaim">HostChainClaim</a></h3>
@@ -935,7 +935,7 @@ transaction.</p>
 <pre><code class="language-solidity">error LzVestingHostChain_InvalidSelector();
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="itargetinternal"><a class="header" href="#itargetinternal">ITargetInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/interfaces/internal/ITargetInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/interfaces/internal/ITargetInternal.sol">Git Source</a></p>
 <p>Internal interface of {LzClaimRefundTargetChain} which defines strcutures, events and errors.</p>
 <h2 id="events-3"><a class="header" href="#events-3">Events</a></h2>
 <h3 id="targetchainclaim"><a class="header" href="#targetchainclaim">TargetChainClaim</a></h3>
@@ -952,7 +952,7 @@ transaction.</p>
 <pre><code class="language-solidity">error LzClaimRefundTargetChain_NoVestedTokenReleased();
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="iclaimfactory"><a class="header" href="#iclaimfactory">IClaimFactory</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/interfaces/IClaimFactory.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/interfaces/IClaimFactory.sol">Git Source</a></p>
 <p>Defines external and public functions for {ClaimFactory}.</p>
 <h2 id="functions-2"><a class="header" href="#functions-2">Functions</a></h2>
 <h3 id="updatedefaultclaim"><a class="header" href="#updatedefaultclaim">updateDefaultClaim</a></h3>
@@ -1011,7 +1011,7 @@ chain.</p>
 <tr><td><code>claimToSave</code></td><td><code>address</code></td><td>Address of the {LzClaimRefundTargetChain} contract to save on host chain in {IGOFactory}.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="ihost"><a class="header" href="#ihost">IHost</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/interfaces/IHost.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/interfaces/IHost.sol">Git Source</a></p>
 <p>Defines external and public functions for {LzVestingHostChain}.</p>
 <h2 id="functions-3"><a class="header" href="#functions-3">Functions</a></h2>
 <h3 id="init"><a class="header" href="#init">init</a></h3>
@@ -1068,7 +1068,7 @@ LayerZero endpoint can call this function.</em></p>
 <tr><td><code>_wallet</code></td><td><code>address</code></td><td>Address of the wallet which requested to claim their due on target chain from {LzClaimRefundTargetChain.claim}.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="itarget"><a class="header" href="#itarget">ITarget</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/interfaces/ITarget.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/interfaces/ITarget.sol">Git Source</a></p>
 <p>Defines external and public functions for {LzClaimRefundTargetChain}.</p>
 <h2 id="functions-4"><a class="header" href="#functions-4">Functions</a></h2>
 <h3 id="init-1"><a class="header" href="#init-1">init</a></h3>
@@ -1121,11 +1121,11 @@ made to here on target chain.</p>
 <h3 id="refundonhostchain"><a class="header" href="#refundonhostchain">refundOnHostChain</a></h3>
 <p><code>msg.sender</code>trigger their refund on host chain from current target chain (no call back).</p>
 <p><em>This can fail on host chain depending on {LzVestingHostChain.refund} conditions.</em></p>
-<pre><code class="language-solidity">function refundOnHostChain(string calldata _tagId) external payable;
+<pre><code class="language-solidity">function refundOnHostChain(string calldata _phaseId) external payable;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>_tagId</code></td><td><code>string</code></td><td>Tag id to be refunded from {LzVestingHostChain} contract on host chain.</td></tr>
+<tr><td><code>_phaseId</code></td><td><code>string</code></td><td>Phase id to be refunded from {LzVestingHostChain} contract on host chain.</td></tr>
 </tbody></table>
 </div>
 <h3 id="updatevestedtoken"><a class="header" href="#updatevestedtoken">updateVestedToken</a></h3>
@@ -1134,7 +1134,7 @@ made to here on target chain.</p>
 <pre><code class="language-solidity">function updateVestedToken(address _vestedToken) external;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="claimfactory"><a class="header" href="#claimfactory">ClaimFactory</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/ClaimFactory.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/ClaimFactory.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/lzApp/ClaimFactory.sol//src/lzApp/interfaces/IClaimFactory.sol/interface.IClaimFactory.html">IClaimFactory</a>, <a href="src/lzApp/ClaimFactory.sol//src/lzApp/interfaces/internal/IClaimFactoryInternal.sol/interface.IClaimFactoryInternal.html">IClaimFactoryInternal</a>, NonblockingLzApp</p>
 <p>Deploy {LzClaimRefundTargetChain} in a single transaction through crosschain call from host
@@ -1229,7 +1229,7 @@ transaction fails.</em></p>
 <pre><code class="language-solidity">function _nonblockingLzReceive(uint16, bytes memory _srcAddress, uint64, bytes memory _payload) internal override;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lzclaimrefundtargetchain"><a class="header" href="#lzclaimrefundtargetchain">LzClaimRefundTargetChain</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/LzClaimRefundTargetChain.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/LzClaimRefundTargetChain.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/lzApp/LzClaimRefundTargetChain.sol//src/lzApp/interfaces/internal/ICrosschainErrorsInternal.sol/interface.ICrosschainErrorsInternal.html">ICrosschainErrorsInternal</a>, <a href="src/lzApp/LzClaimRefundTargetChain.sol//src/lzApp/interfaces/ITarget.sol/interface.ITarget.html">ITarget</a>, <a href="src/lzApp/LzClaimRefundTargetChain.sol//src/lzApp/interfaces/internal/ITargetInternal.sol/interface.ITargetInternal.html">ITargetInternal</a>, NonblockingLzAppUpgradeable</p>
 <p>Contract to claim tokens using LayerZero's crosschain calls.</p>
@@ -1292,11 +1292,11 @@ made to here on target chain.</p>
 <p><em>define gasAmount after variable declaration for more accurate gas estimation. This will
 be used to trigger <code>hostClaimUpdate</code> on host chain</em></p>
 <p><em>add +20% than test <code>test_exposed_hostClaimUpdate_GasUsage</code></em></p>
-<pre><code class="language-solidity">function refundOnHostChain(string calldata _tagId) public payable;
+<pre><code class="language-solidity">function refundOnHostChain(string calldata _phaseId) public payable;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>_tagId</code></td><td><code>string</code></td><td>Tag id to be refunded from {LzVestingHostChain} contract on host chain.</td></tr>
+<tr><td><code>_phaseId</code></td><td><code>string</code></td><td>Phase id to be refunded from {LzVestingHostChain} contract on host chain.</td></tr>
 </tbody></table>
 </div>
 <h3 id="updatevestedtoken-1"><a class="header" href="#updatevestedtoken-1">updateVestedToken</a></h3>
@@ -1323,7 +1323,7 @@ transaction fails.</em></p>
 <pre><code class="language-solidity">function _nonblockingLzReceive(uint16, bytes memory, uint64, bytes memory _payload) internal override;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lzstorage"><a class="header" href="#lzstorage">LzStorage</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/LzStorage.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/LzStorage.sol">Git Source</a></p>
 <p>Mapps the storage layout of LayerZero dependend contracts:</p>
 <ul>
 <li>{LzClaimRefundTargetChain};</li>
@@ -1378,7 +1378,7 @@ crosschain call from {ClaimFactory.saveCrosschainClaimInHostFactory}.</p>
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lzvestinghostchain"><a class="header" href="#lzvestinghostchain">LzVestingHostChain</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/lzApp/LzVestingHostChain.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/lzApp/LzVestingHostChain.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/lzApp/LzVestingHostChain.sol//src/lzApp/interfaces/internal/ICrosschainErrorsInternal.sol/interface.ICrosschainErrorsInternal.html">ICrosschainErrorsInternal</a>, <a href="src/lzApp/LzVestingHostChain.sol//src/lzApp/interfaces/IHost.sol/interface.IHost.html">IHost</a>, <a href="src/lzApp/LzVestingHostChain.sol//src/lzApp/interfaces/internal/IHostInternal.sol/interface.IHostInternal.html">IHostInternal</a>, NonblockingLzAppUpgradeable, IGOVesting</p>
 <p>Contract inheriting from {IGOVesting} (developed by Decubate) to manage crosschain vesting
@@ -1461,7 +1461,7 @@ transaction fails.</em></p>
 gas estimation this will be used to trigger <code>_releaseTokenToUser</code>
 on target chain</em></p>
 <p><em>Only Layerero endpoint can call this function to refund users.</em></p>
-<pre><code class="language-solidity">function _refundLz(address _wallet, string memory _tagId) internal userInWhitelist(_wallet);
+<pre><code class="language-solidity">function _refundLz(address _wallet, string memory _phaseId) internal userInWhitelist(_wallet);
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="contents-4"><a class="header" href="#contents-4">Contents</a></h1>
 <ul>
@@ -1469,23 +1469,23 @@ on target chain</em></p>
 <li><a href="src/readable/IIGOReadable.sol/interface.IIGOReadable.html">IIGOReadable</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="igoreadable"><a class="header" href="#igoreadable">IGOReadable</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/readable/IGOReadable.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/readable/IGOReadable.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/readable/IGOReadable.sol//src/readable/IIGOReadable.sol/interface.IIGOReadable.html">IIGOReadable</a>, <a href="src/readable/IGOReadable.sol//src/writable/IIGOWritableInternal.sol/interface.IIGOWritableInternal.html">IIGOWritableInternal</a>, <a href="src/readable/IGOReadable.sol//src/writable/restricted/IRestrictedWritableInternal.sol/interface.IRestrictedWritableInternal.html">IRestrictedWritableInternal</a>, <a href="src/readable/IGOReadable.sol//src/shared/ISharedInternal.sol/interface.ISharedInternal.html">ISharedInternal</a></p>
 <p>Read-only contract of {IGO} data.</p>
 <h2 id="functions-9"><a class="header" href="#functions-9">Functions</a></h2>
 <h3 id="allocationreservedbyin"><a class="header" href="#allocationreservedbyin">allocationReservedByIn</a></h3>
-<pre><code class="language-solidity">function allocationReservedByIn(address account, string calldata tagId) external view override returns (uint256);
+<pre><code class="language-solidity">function allocationReservedByIn(address account, string calldata phaseId) external view override returns (uint256);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>account</code></td><td><code>address</code></td><td>Address of the user.</td></tr>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} paid by <code>account</code> for the tag <code>tagId</code>.</td></tr>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} paid by <code>account</code> for the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
 <h3 id="igostatus"><a class="header" href="#igostatus">igoStatus</a></h3>
@@ -1496,17 +1496,17 @@ on target chain</em></p>
 <tr><td><code>&lt;none&gt;</code></td><td><code>Status</code></td><td>Enum representing the current status of the IGO.</td></tr>
 </tbody></table>
 </div>
-<h3 id="raisedintag"><a class="header" href="#raisedintag">raisedInTag</a></h3>
-<pre><code class="language-solidity">function raisedInTag(string memory tagId) external view override returns (uint256);
+<h3 id="raisedinphase"><a class="header" href="#raisedinphase">raisedInPhase</a></h3>
+<pre><code class="language-solidity">function raisedInPhase(string memory phaseId) external view override returns (uint256);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} raised for the tag <code>tagId</code>.</td></tr>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} raised for the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
 <h3 id="setup"><a class="header" href="#setup">setUp</a></h3>
@@ -1518,7 +1518,7 @@ on target chain</em></p>
         address vestingContract,
         address paymentToken,
         uint256 grandTotal,
-        uint256 summedMaxTagCap,
+        uint256 summedMaxPhaseCap,
         uint256 refundFeeDecimals
     );
 </code></pre>
@@ -1526,30 +1526,30 @@ on target chain</em></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>vestingContract</code></td><td><code>address</code></td><td>Address of the {IGOVesting} contract.</td></tr>
 <tr><td><code>paymentToken</code></td><td><code>address</code></td><td>Address of the default token used to reserve allocation through the IGO.</td></tr>
-<tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>Maximum amount of paymentToken that can be raised for this IGO accross all tags.</td></tr>
-<tr><td><code>summedMaxTagCap</code></td><td><code>uint256</code></td><td>Sum of maximum cap of each tag, which can be lower or equal to <code>grandTotal</code>.</td></tr>
+<tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>Maximum amount of paymentToken that can be raised for this IGO accross all phases.</td></tr>
+<tr><td><code>summedMaxPhaseCap</code></td><td><code>uint256</code></td><td>Sum of maximum cap of each phase, which can be lower or equal to <code>grandTotal</code>.</td></tr>
 <tr><td><code>refundFeeDecimals</code></td><td><code>uint256</code></td><td>Number of decimals used for {IIGOWritableInternal.Allocation.refundFee}.</td></tr>
 </tbody></table>
 </div>
-<h3 id="tag"><a class="header" href="#tag">tag</a></h3>
-<pre><code class="language-solidity">function tag(string memory tagId) external view override returns (Tag memory tag_);
+<h3 id="phase"><a class="header" href="#phase">phase</a></h3>
+<pre><code class="language-solidity">function phase(string memory phaseId) external view override returns (Phase memory phase_);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tag_</code></td><td><code>Tag</code></td><td>Tag struct representing the data of the tag <code>tagId</code>.</td></tr>
+<tr><td><code>phase_</code></td><td><code>Phase</code></td><td>Phase struct representing the data of the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
-<h3 id="tagids"><a class="header" href="#tagids">tagIds</a></h3>
-<pre><code class="language-solidity">function tagIds() external view override returns (string[] memory tagIds_);
+<h3 id="phaseids"><a class="header" href="#phaseids">phaseIds</a></h3>
+<pre><code class="language-solidity">function phaseIds() external view override returns (string[] memory phaseIds_);
 </code></pre>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagIds_</code></td><td><code>string[]</code></td><td>List of all tags identifiers.</td></tr>
+<tr><td><code>phaseIds_</code></td><td><code>string[]</code></td><td>List of all phases identifiers.</td></tr>
 </tbody></table>
 </div>
 <h3 id="totalraised"><a class="header" href="#totalraised">totalRaised</a></h3>
@@ -1560,21 +1560,21 @@ on target chain</em></p>
 <tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Total amount of {IGOStorage.SetUp.paymentToken} raised for this IGO.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="iigoreadable"><a class="header" href="#iigoreadable">IIGOReadable</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/readable/IIGOReadable.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/readable/IIGOReadable.sol">Git Source</a></p>
 <p>Interface made for read-only data from {IGO}.</p>
 <h2 id="functions-10"><a class="header" href="#functions-10">Functions</a></h2>
 <h3 id="allocationreservedbyin-1"><a class="header" href="#allocationreservedbyin-1">allocationReservedByIn</a></h3>
-<pre><code class="language-solidity">function allocationReservedByIn(address account, string calldata tagId) external view returns (uint256);
+<pre><code class="language-solidity">function allocationReservedByIn(address account, string calldata phaseId) external view returns (uint256);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>account</code></td><td><code>address</code></td><td>Address of the user.</td></tr>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} paid by <code>account</code> for the tag <code>tagId</code>.</td></tr>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} paid by <code>account</code> for the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
 <h3 id="igostatus-1"><a class="header" href="#igostatus-1">igoStatus</a></h3>
@@ -1585,17 +1585,17 @@ on target chain</em></p>
 <tr><td><code>&lt;none&gt;</code></td><td><code>ISharedInternal.Status</code></td><td>Enum representing the current status of the IGO.</td></tr>
 </tbody></table>
 </div>
-<h3 id="raisedintag-1"><a class="header" href="#raisedintag-1">raisedInTag</a></h3>
-<pre><code class="language-solidity">function raisedInTag(string memory tagId) external view returns (uint256);
+<h3 id="raisedinphase-1"><a class="header" href="#raisedinphase-1">raisedInPhase</a></h3>
+<pre><code class="language-solidity">function raisedInPhase(string memory phaseId) external view returns (uint256);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} raised for the tag <code>tagId</code>.</td></tr>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} raised for the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
 <h3 id="setup-1"><a class="header" href="#setup-1">setUp</a></h3>
@@ -1606,7 +1606,7 @@ on target chain</em></p>
         address vestingContract,
         address paymentToken,
         uint256 grandTotal,
-        uint256 summedMaxTagCap,
+        uint256 summedMaxPhaseCap,
         uint256 refundFeeDecimals
     );
 </code></pre>
@@ -1614,30 +1614,30 @@ on target chain</em></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>vestingContract</code></td><td><code>address</code></td><td>Address of the {IGOVesting} contract.</td></tr>
 <tr><td><code>paymentToken</code></td><td><code>address</code></td><td>Address of the default token used to reserve allocation through the IGO.</td></tr>
-<tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>Maximum amount of paymentToken that can be raised for this IGO accross all tags.</td></tr>
-<tr><td><code>summedMaxTagCap</code></td><td><code>uint256</code></td><td>Sum of maximum cap of each tag, which can be lower or equal to <code>grandTotal</code>.</td></tr>
+<tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>Maximum amount of paymentToken that can be raised for this IGO accross all phases.</td></tr>
+<tr><td><code>summedMaxPhaseCap</code></td><td><code>uint256</code></td><td>Sum of maximum cap of each phase, which can be lower or equal to <code>grandTotal</code>.</td></tr>
 <tr><td><code>refundFeeDecimals</code></td><td><code>uint256</code></td><td>Number of decimals used for {IIGOWritableInternal.Allocation.refundFee}.</td></tr>
 </tbody></table>
 </div>
-<h3 id="tag-1"><a class="header" href="#tag-1">tag</a></h3>
-<pre><code class="language-solidity">function tag(string memory tagId) external view returns (ISharedInternal.Tag memory tag_);
+<h3 id="phase-1"><a class="header" href="#phase-1">phase</a></h3>
+<pre><code class="language-solidity">function phase(string memory phaseId) external view returns (ISharedInternal.Phase memory phase_);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tag_</code></td><td><code>ISharedInternal.Tag</code></td><td>Tag struct representing the data of the tag <code>tagId</code>.</td></tr>
+<tr><td><code>phase_</code></td><td><code>ISharedInternal.Phase</code></td><td>Phase struct representing the data of the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
-<h3 id="tagids-1"><a class="header" href="#tagids-1">tagIds</a></h3>
-<pre><code class="language-solidity">function tagIds() external view returns (string[] memory tagIds_);
+<h3 id="phaseids-1"><a class="header" href="#phaseids-1">phaseIds</a></h3>
+<pre><code class="language-solidity">function phaseIds() external view returns (string[] memory phaseIds_);
 </code></pre>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagIds_</code></td><td><code>string[]</code></td><td>List of all tags identifiers.</td></tr>
+<tr><td><code>phaseIds_</code></td><td><code>string[]</code></td><td>List of all phases identifiers.</td></tr>
 </tbody></table>
 </div>
 <h3 id="totalraised-1"><a class="header" href="#totalraised-1">totalRaised</a></h3>
@@ -1652,23 +1652,23 @@ on target chain</em></p>
 <li><a href="src/shared/ISharedInternal.sol/interface.ISharedInternal.html">ISharedInternal</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="isharedinternal"><a class="header" href="#isharedinternal">ISharedInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/shared/ISharedInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/shared/ISharedInternal.sol">Git Source</a></p>
 <p>Interface shared betwen all modules of the IGO contract.</p>
 <p><em>Defines shared enum, struct, events and errors.</em></p>
 <h2 id="structs-3"><a class="header" href="#structs-3">Structs</a></h2>
-<h3 id="tag-2"><a class="header" href="#tag-2">Tag</a></h3>
-<p>Shared struct representing the data of a tag.</p>
-<pre><code class="language-solidity">struct Tag {
+<h3 id="phase-2"><a class="header" href="#phase-2">Phase</a></h3>
+<p>Shared struct representing the data of a phase.</p>
+<pre><code class="language-solidity">struct Phase {
     Status status;
     bytes32 merkleRoot;
     uint128 startAt;
     uint128 endAt;
-    uint256 maxTagCap;
+    uint256 maxPhaseCap;
 }
 </code></pre>
 <h2 id="enums"><a class="header" href="#enums">Enums</a></h2>
 <h3 id="status"><a class="header" href="#status">Status</a></h3>
-<p>Shared enum representing the different status of a tag or the whole IGO.</p>
+<p>Shared enum representing the different status of a phase or the whole IGO.</p>
 <pre><code class="language-solidity">enum Status {
     NOT_STARTED,
     OPENED,
@@ -1692,7 +1692,7 @@ on target chain</em></p>
 <li><a href="src/writable/restricted/RestrictedWritableInternal.sol/contract.RestrictedWritableInternal.html">RestrictedWritableInternal</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="irestrictedwritable"><a class="header" href="#irestrictedwritable">IRestrictedWritable</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/restricted/IRestrictedWritable.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/restricted/IRestrictedWritable.sol">Git Source</a></p>
 <p>Only the owner of the contract can call these methods.</p>
 <h2 id="functions-11"><a class="header" href="#functions-11">Functions</a></h2>
 <h3 id="initialize"><a class="header" href="#initialize">initialize</a></h3>
@@ -1700,16 +1700,16 @@ on target chain</em></p>
 <pre><code class="language-solidity">function initialize(
     address owner,
     IGOStorage.SetUp calldata setUp,
-    string[] calldata tagIds_,
-    ISharedInternal.Tag[] calldata tags
+    string[] calldata phaseIds_,
+    ISharedInternal.Phase[] calldata phases
 ) external;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>owner</code></td><td><code>address</code></td><td>The address interacting with {IGOFactory} through {IGOFactory.createIGO} or {IGOFactory.createCrosschainIGO} which can call <code>onlyRole(DEFAULT_ADMIN_ROLE)</code> functions.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>{IGOStorage.SetUp} struct to be saved.</td></tr>
-<tr><td><code>tagIds_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>tags</code> - can be empty.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Array of {ISharedInternal.Tag[} to be saved - can be empty.</td></tr>
+<tr><td><code>phaseIds_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>phases</code> - can be empty.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Array of {ISharedInternal.Phase[} to be saved - can be empty.</td></tr>
 </tbody></table>
 </div>
 <h3 id="openigo"><a class="header" href="#openigo">openIGO</a></h3>
@@ -1731,64 +1731,64 @@ Deployment and owner is set in same transaction IGOFactory.createIGO so no one c
 the IGOFactory for owner rights.</em></p>
 <pre><code class="language-solidity">function setOwner() external;
 </code></pre>
-<h3 id="updatesettag"><a class="header" href="#updatesettag">updateSetTag</a></h3>
-<p><em>Update or create a tag with all its data.</em></p>
-<pre><code class="language-solidity">function updateSetTag(string calldata tagId_, ISharedInternal.Tag calldata tag_) external;
+<h3 id="updatesetphase"><a class="header" href="#updatesetphase">updateSetPhase</a></h3>
+<p><em>Update or create a phase with all its data.</em></p>
+<pre><code class="language-solidity">function updateSetPhase(string calldata phaseId_, ISharedInternal.Phase calldata phase_) external;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId_</code></td><td><code>string</code></td><td>Identifier of tag to set or update.</td></tr>
-<tr><td><code>tag_</code></td><td><code>ISharedInternal.Tag</code></td><td>Struct {ISharedInternal.Tag} containing tag's data to be saved.</td></tr>
+<tr><td><code>phaseId_</code></td><td><code>string</code></td><td>Identifier of phase to set or update.</td></tr>
+<tr><td><code>phase_</code></td><td><code>ISharedInternal.Phase</code></td><td>Struct {ISharedInternal.Phase} containing phase's data to be saved.</td></tr>
 </tbody></table>
 </div>
-<h3 id="updatesettags"><a class="header" href="#updatesettags">updateSetTags</a></h3>
-<p><em>Update or create multiple tags with all their data.</em></p>
-<pre><code class="language-solidity">function updateSetTags(string[] calldata tagIdentifiers_, ISharedInternal.Tag[] calldata tags_) external;
+<h3 id="updatesetphases"><a class="header" href="#updatesetphases">updateSetPhases</a></h3>
+<p><em>Update or create multiple phases with all their data.</em></p>
+<pre><code class="language-solidity">function updateSetPhases(string[] calldata phaseIdentifiers_, ISharedInternal.Phase[] calldata phases_) external;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagIdentifiers_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>tags</code>.</td></tr>
-<tr><td><code>tags_</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Array of struct {ISharedInternal.Tag} containing tags' data to be saved.</td></tr>
+<tr><td><code>phaseIdentifiers_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>phases</code>.</td></tr>
+<tr><td><code>phases_</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Array of struct {ISharedInternal.Phase} containing phases' data to be saved.</td></tr>
 </tbody></table>
 </div>
-<h3 id="opentag"><a class="header" href="#opentag">openTag</a></h3>
-<pre><code class="language-solidity">function openTag(string calldata tagId) external;
+<h3 id="openphase"><a class="header" href="#openphase">openPhase</a></h3>
+<pre><code class="language-solidity">function openPhase(string calldata phaseId) external;
 </code></pre>
-<h3 id="pausetag"><a class="header" href="#pausetag">pauseTag</a></h3>
-<pre><code class="language-solidity">function pauseTag(string calldata tagId) external;
+<h3 id="pausephase"><a class="header" href="#pausephase">pausePhase</a></h3>
+<pre><code class="language-solidity">function pausePhase(string calldata phaseId) external;
 </code></pre>
-<h3 id="updatetagmerkleroot"><a class="header" href="#updatetagmerkleroot">updateTagMerkleRoot</a></h3>
-<p>Update the merkle root of a tag to update a single or multiple wallet allocation,
+<h3 id="updatephasemerkleroot"><a class="header" href="#updatephasemerkleroot">updatePhaseMerkleRoot</a></h3>
+<p>Update the merkle root of a phase to update a single or multiple wallet allocation,
 refund fee, payment token etc.</p>
-<pre><code class="language-solidity">function updateTagMerkleRoot(string calldata tagId, bytes32 merkleRoot) external;
+<pre><code class="language-solidity">function updatePhaseMerkleRoot(string calldata phaseId, bytes32 merkleRoot) external;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
-<tr><td><code>merkleRoot</code></td><td><code>bytes32</code></td><td>New merkle root to be saved for this tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
+<tr><td><code>merkleRoot</code></td><td><code>bytes32</code></td><td>New merkle root to be saved for this phase.</td></tr>
 </tbody></table>
 </div>
-<h3 id="updatetagstartdate"><a class="header" href="#updatetagstartdate">updateTagStartDate</a></h3>
-<pre><code class="language-solidity">function updateTagStartDate(string calldata tagId, uint128 startAt) external;
+<h3 id="updatephasestartdate"><a class="header" href="#updatephasestartdate">updatePhaseStartDate</a></h3>
+<pre><code class="language-solidity">function updatePhaseStartDate(string calldata phaseId, uint128 startAt) external;
 </code></pre>
-<h3 id="updatetagenddate"><a class="header" href="#updatetagenddate">updateTagEndDate</a></h3>
-<pre><code class="language-solidity">function updateTagEndDate(string calldata tagId, uint128 endAt) external;
+<h3 id="updatephaseenddate"><a class="header" href="#updatephaseenddate">updatePhaseEndDate</a></h3>
+<pre><code class="language-solidity">function updatePhaseEndDate(string calldata phaseId, uint128 endAt) external;
 </code></pre>
-<h3 id="updatetagmaxcap"><a class="header" href="#updatetagmaxcap">updateTagMaxCap</a></h3>
-<pre><code class="language-solidity">function updateTagMaxCap(string calldata tagId, uint256 maxTagCap) external;
+<h3 id="updatephasemaxcap"><a class="header" href="#updatephasemaxcap">updatePhaseMaxCap</a></h3>
+<pre><code class="language-solidity">function updatePhaseMaxCap(string calldata phaseId, uint256 maxPhaseCap) external;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="irestrictedwritableinternal"><a class="header" href="#irestrictedwritableinternal">IRestrictedWritableInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/restricted/IRestrictedWritableInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/restricted/IRestrictedWritableInternal.sol">Git Source</a></p>
 <p>Defines struct, event and error used in {RestrictedWritableInternal} &amp; {RestrictedWritable}.</p>
 <h2 id="errors-5"><a class="header" href="#errors-5">Errors</a></h2>
 <h3 id="restrictedwritableinternal_differentarrayslength"><a class="header" href="#restrictedwritableinternal_differentarrayslength">RestrictedWritableInternal_DifferentArraysLength</a></h3>
 <pre><code class="language-solidity">error RestrictedWritableInternal_DifferentArraysLength();
 </code></pre>
-<h3 id="restrictedwritableinternal_emptytag"><a class="header" href="#restrictedwritableinternal_emptytag">RestrictedWritableInternal_EmptyTag</a></h3>
-<pre><code class="language-solidity">error RestrictedWritableInternal_EmptyTag();
+<h3 id="restrictedwritableinternal_emptyphase"><a class="header" href="#restrictedwritableinternal_emptyphase">RestrictedWritableInternal_EmptyPhase</a></h3>
+<pre><code class="language-solidity">error RestrictedWritableInternal_EmptyPhase();
 </code></pre>
-<h3 id="restrictedwritableinternal_summedmaxtagcapgtgrandtotal"><a class="header" href="#restrictedwritableinternal_summedmaxtagcapgtgrandtotal">RestrictedWritableInternal_SummedMaxTagCapGtGrandTotal</a></h3>
-<pre><code class="language-solidity">error RestrictedWritableInternal_SummedMaxTagCapGtGrandTotal(uint256 greaterBy);
+<h3 id="restrictedwritableinternal_summedmaxphasecapgtgrandtotal"><a class="header" href="#restrictedwritableinternal_summedmaxphasecapgtgrandtotal">RestrictedWritableInternal_SummedMaxPhaseCapGtGrandTotal</a></h3>
+<pre><code class="language-solidity">error RestrictedWritableInternal_SummedMaxPhaseCapGtGrandTotal(uint256 greaterBy);
 </code></pre>
 <h3 id="restrictedwritable_init_owneriszeroaddr"><a class="header" href="#restrictedwritable_init_owneriszeroaddr">RestrictedWritable_Init_OwnerIsZeroAddr</a></h3>
 <pre><code class="language-solidity">error RestrictedWritable_Init_OwnerIsZeroAddr();
@@ -1809,8 +1809,8 @@ refund fee, payment token etc.</p>
 <p><em>Thrown when merkle root is equal to bytes32(0).</em></p>
 <pre><code class="language-solidity">error RestrictedWritable_EmptyMerkleRoot();
 </code></pre>
-<h3 id="restrictedwritable_emptytag"><a class="header" href="#restrictedwritable_emptytag">RestrictedWritable_EmptyTag</a></h3>
-<pre><code class="language-solidity">error RestrictedWritable_EmptyTag();
+<h3 id="restrictedwritable_emptyphase"><a class="header" href="#restrictedwritable_emptyphase">RestrictedWritable_EmptyPhase</a></h3>
+<pre><code class="language-solidity">error RestrictedWritable_EmptyPhase();
 </code></pre>
 <h3 id="restrictedwritable_endinpast"><a class="header" href="#restrictedwritable_endinpast">RestrictedWritable_EndInPast</a></h3>
 <pre><code class="language-solidity">error RestrictedWritable_EndInPast();
@@ -1825,7 +1825,7 @@ refund fee, payment token etc.</p>
 <pre><code class="language-solidity">error RestrictedWritable_TokenIsZeroAddr();
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="restrictedwritable"><a class="header" href="#restrictedwritable">RestrictedWritable</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/restricted/RestrictedWritable.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/restricted/RestrictedWritable.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/writable/restricted/RestrictedWritable.sol//src/writable/restricted/IRestrictedWritable.sol/interface.IRestrictedWritable.html">IRestrictedWritable</a>, <a href="src/writable/restricted/RestrictedWritable.sol//src/writable/restricted/RestrictedWritableInternal.sol/contract.RestrictedWritableInternal.html">RestrictedWritableInternal</a>, AccessControlEnumerable, Initializable</p>
 <p><em>Inherits from <code>ISharedInternal</code> will create <code>error[5005]: Linearization of inheritance graph impossible</code></em></p>
@@ -1835,16 +1835,16 @@ refund fee, payment token etc.</p>
 <pre><code class="language-solidity">function initialize(
     address owner,
     IGOStorage.SetUp calldata setUp,
-    string[] calldata tagIds_,
-    ISharedInternal.Tag[] calldata tags
+    string[] calldata phaseIds_,
+    ISharedInternal.Phase[] calldata phases
 ) external override reinitializer(2) onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>owner</code></td><td><code>address</code></td><td>The address interacting with {IGOFactory} through {IGOFactory.createIGO} or {IGOFactory.createCrosschainIGO} which can call <code>onlyRole(DEFAULT_ADMIN_ROLE)</code> functions.</td></tr>
 <tr><td><code>setUp</code></td><td><code>IGOStorage.SetUp</code></td><td>{IGOStorage.SetUp} struct to be saved.</td></tr>
-<tr><td><code>tagIds_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>tags</code> - can be empty.</td></tr>
-<tr><td><code>tags</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Array of {ISharedInternal.Tag[} to be saved - can be empty.</td></tr>
+<tr><td><code>phaseIds_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>phases</code> - can be empty.</td></tr>
+<tr><td><code>phases</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Array of {ISharedInternal.Phase[} to be saved - can be empty.</td></tr>
 </tbody></table>
 </div>
 <h3 id="openigo-1"><a class="header" href="#openigo-1">openIGO</a></h3>
@@ -1866,129 +1866,135 @@ Deployment and owner is set in same transaction IGOFactory.createIGO so no one c
 the IGOFactory for owner rights.</em></p>
 <pre><code class="language-solidity">function setOwner() external override initializer;
 </code></pre>
-<h3 id="updatesettag-1"><a class="header" href="#updatesettag-1">updateSetTag</a></h3>
-<p><em>Update or create a tag with all its data.</em></p>
-<pre><code class="language-solidity">function updateSetTag(string calldata tagId_, ISharedInternal.Tag calldata tag_)
+<h3 id="updatesetphase-1"><a class="header" href="#updatesetphase-1">updateSetPhase</a></h3>
+<p><em>Update or create a phase with all its data.</em></p>
+<pre><code class="language-solidity">function updateSetPhase(string calldata phaseId_, ISharedInternal.Phase calldata phase_)
     external
     override
     onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId_</code></td><td><code>string</code></td><td>Identifier of tag to set or update.</td></tr>
-<tr><td><code>tag_</code></td><td><code>ISharedInternal.Tag</code></td><td>Struct {ISharedInternal.Tag} containing tag's data to be saved.</td></tr>
+<tr><td><code>phaseId_</code></td><td><code>string</code></td><td>Identifier of phase to set or update.</td></tr>
+<tr><td><code>phase_</code></td><td><code>ISharedInternal.Phase</code></td><td>Struct {ISharedInternal.Phase} containing phase's data to be saved.</td></tr>
 </tbody></table>
 </div>
-<h3 id="updatesettags-1"><a class="header" href="#updatesettags-1">updateSetTags</a></h3>
-<p><em>Update or create multiple tags with all their data.</em></p>
-<pre><code class="language-solidity">function updateSetTags(string[] calldata tagIdentifiers_, ISharedInternal.Tag[] calldata tags_)
+<h3 id="updatesetphases-1"><a class="header" href="#updatesetphases-1">updateSetPhases</a></h3>
+<p><em>Update or create multiple phases with all their data.</em></p>
+<pre><code class="language-solidity">function updateSetPhases(string[] calldata phaseIdentifiers_, ISharedInternal.Phase[] calldata phases_)
     public
     override
     onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagIdentifiers_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>tags</code>.</td></tr>
-<tr><td><code>tags_</code></td><td><code>ISharedInternal.Tag[]</code></td><td>Array of struct {ISharedInternal.Tag} containing tags' data to be saved.</td></tr>
+<tr><td><code>phaseIdentifiers_</code></td><td><code>string[]</code></td><td>Array of identifiers of <code>phases</code>.</td></tr>
+<tr><td><code>phases_</code></td><td><code>ISharedInternal.Phase[]</code></td><td>Array of struct {ISharedInternal.Phase} containing phases' data to be saved.</td></tr>
 </tbody></table>
 </div>
-<h3 id="opentag-1"><a class="header" href="#opentag-1">openTag</a></h3>
-<pre><code class="language-solidity">function openTag(string calldata tagId) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="openphase-1"><a class="header" href="#openphase-1">openPhase</a></h3>
+<pre><code class="language-solidity">function openPhase(string calldata phaseId) external override onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
-<h3 id="pausetag-1"><a class="header" href="#pausetag-1">pauseTag</a></h3>
-<pre><code class="language-solidity">function pauseTag(string calldata tagId) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="pausephase-1"><a class="header" href="#pausephase-1">pausePhase</a></h3>
+<pre><code class="language-solidity">function pausePhase(string calldata phaseId) external override onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
-<h3 id="updatetagmerkleroot-1"><a class="header" href="#updatetagmerkleroot-1">updateTagMerkleRoot</a></h3>
-<p>Update the merkle root of a tag to update a single or multiple wallet allocation,
+<h3 id="updatephasemerkleroot-1"><a class="header" href="#updatephasemerkleroot-1">updatePhaseMerkleRoot</a></h3>
+<p>Update the merkle root of a phase to update a single or multiple wallet allocation,
 refund fee, payment token etc.</p>
-<pre><code class="language-solidity">function updateTagMerkleRoot(string calldata tagId, bytes32 merkleRoot)
+<pre><code class="language-solidity">function updatePhaseMerkleRoot(string calldata phaseId, bytes32 merkleRoot)
     external
     override
     onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
-<tr><td><code>merkleRoot</code></td><td><code>bytes32</code></td><td>New merkle root to be saved for this tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
+<tr><td><code>merkleRoot</code></td><td><code>bytes32</code></td><td>New merkle root to be saved for this phase.</td></tr>
 </tbody></table>
 </div>
-<h3 id="updatetagstartdate-1"><a class="header" href="#updatetagstartdate-1">updateTagStartDate</a></h3>
-<pre><code class="language-solidity">function updateTagStartDate(string calldata tagId, uint128 startAt) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="updatephasestartdate-1"><a class="header" href="#updatephasestartdate-1">updatePhaseStartDate</a></h3>
+<pre><code class="language-solidity">function updatePhaseStartDate(string calldata phaseId, uint128 startAt)
+    external
+    override
+    onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
-<h3 id="updatetagenddate-1"><a class="header" href="#updatetagenddate-1">updateTagEndDate</a></h3>
-<pre><code class="language-solidity">function updateTagEndDate(string calldata tagId, uint128 endAt) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="updatephaseenddate-1"><a class="header" href="#updatephaseenddate-1">updatePhaseEndDate</a></h3>
+<pre><code class="language-solidity">function updatePhaseEndDate(string calldata phaseId, uint128 endAt) external override onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
-<h3 id="updatetagmaxcap-1"><a class="header" href="#updatetagmaxcap-1">updateTagMaxCap</a></h3>
-<pre><code class="language-solidity">function updateTagMaxCap(string calldata tagId, uint256 maxTagCap) external override onlyRole(DEFAULT_ADMIN_ROLE);
+<h3 id="updatephasemaxcap-1"><a class="header" href="#updatephasemaxcap-1">updatePhaseMaxCap</a></h3>
+<pre><code class="language-solidity">function updatePhaseMaxCap(string calldata phaseId, uint256 maxPhaseCap)
+    external
+    override
+    onlyRole(DEFAULT_ADMIN_ROLE);
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="restrictedwritableinternal"><a class="header" href="#restrictedwritableinternal">RestrictedWritableInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/restricted/RestrictedWritableInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/restricted/RestrictedWritableInternal.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/writable/restricted/RestrictedWritableInternal.sol//src/writable/restricted/IRestrictedWritableInternal.sol/interface.IRestrictedWritableInternal.html">IRestrictedWritableInternal</a></p>
 <p>Defines the internal functions of <code>RestrictedWritable</code> contract.</p>
 <h2 id="functions-13"><a class="header" href="#functions-13">Functions</a></h2>
-<h3 id="_settag"><a class="header" href="#_settag">_setTag</a></h3>
-<p>Set the data of tag or update it if it already exists.</p>
-<pre><code class="language-solidity">function _setTag(
+<h3 id="_setphase"><a class="header" href="#_setphase">_setPhase</a></h3>
+<p>Set the data of phase or update it if it already exists.</p>
+<pre><code class="language-solidity">function _setPhase(
     uint256 grandTotal,
-    uint256 summedMaxTagCap,
-    uint256 oldMaxTagCap,
-    ISharedInternal.Tag calldata tag_,
-    string calldata tagId_
+    uint256 summedMaxPhaseCap,
+    uint256 oldMaxPhaseCap,
+    ISharedInternal.Phase calldata phase_,
+    string calldata phaseId_
 ) internal returns (uint256);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>The maximum amount that can be raised for this IGO, over all tag.</td></tr>
-<tr><td><code>summedMaxTagCap</code></td><td><code>uint256</code></td><td>The sum of all max amount to raise per tag before updating this tag.</td></tr>
-<tr><td><code>oldMaxTagCap</code></td><td><code>uint256</code></td><td>The max amount to raise for the tag before updating it.</td></tr>
-<tr><td><code>tag_</code></td><td><code>ISharedInternal.Tag</code></td><td>The tag's data to save.</td></tr>
-<tr><td><code>tagId_</code></td><td><code>string</code></td><td>The tag identifier.</td></tr>
+<tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>The maximum amount that can be raised for this IGO, over all phase.</td></tr>
+<tr><td><code>summedMaxPhaseCap</code></td><td><code>uint256</code></td><td>The sum of all max amount to raise per phase before updating this phase.</td></tr>
+<tr><td><code>oldMaxPhaseCap</code></td><td><code>uint256</code></td><td>The max amount to raise for the phase before updating it.</td></tr>
+<tr><td><code>phase_</code></td><td><code>ISharedInternal.Phase</code></td><td>The phase's data to save.</td></tr>
+<tr><td><code>phaseId_</code></td><td><code>string</code></td><td>The phase identifier.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>The new value of <code>summedMaxTagCap</code> after the tag has been set/updated.</td></tr>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>The new value of <code>summedMaxPhaseCap</code> after the phase has been set/updated.</td></tr>
 </tbody></table>
 </div>
-<h3 id="_settags"><a class="header" href="#_settags">_setTags</a></h3>
-<p>Set the data of multiple tags or update them if they already exist.</p>
-<pre><code class="language-solidity">function _setTags(string[] calldata tagIdentifiers_, ISharedInternal.Tag[] calldata tags_) internal;
+<h3 id="_setphases"><a class="header" href="#_setphases">_setPhases</a></h3>
+<p>Set the data of multiple phases or update them if they already exist.</p>
+<pre><code class="language-solidity">function _setPhases(string[] calldata phaseIdentifiers_, ISharedInternal.Phase[] calldata phases_) internal;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagIdentifiers_</code></td><td><code>string[]</code></td><td>The identifiers of tags.</td></tr>
-<tr><td><code>tags_</code></td><td><code>ISharedInternal.Tag[]</code></td><td>The data of each tag to set.</td></tr>
+<tr><td><code>phaseIdentifiers_</code></td><td><code>string[]</code></td><td>The identifiers of phases.</td></tr>
+<tr><td><code>phases_</code></td><td><code>ISharedInternal.Phase[]</code></td><td>The data of each phase to set.</td></tr>
 </tbody></table>
 </div>
-<h3 id="_isemptytag"><a class="header" href="#_isemptytag">_isEmptyTag</a></h3>
-<p>Verify that none of the tag's data is empty.</p>
-<pre><code class="language-solidity">function _isEmptyTag(ISharedInternal.Tag calldata tag_) internal view returns (bool);
+<h3 id="_isemptyphase"><a class="header" href="#_isemptyphase">_isEmptyPhase</a></h3>
+<p>Verify that none of the phase's data is empty.</p>
+<pre><code class="language-solidity">function _isEmptyPhase(ISharedInternal.Phase calldata phase_) internal view returns (bool);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tag_</code></td><td><code>ISharedInternal.Tag</code></td><td>The tag's data to verify.</td></tr>
+<tr><td><code>phase_</code></td><td><code>ISharedInternal.Phase</code></td><td>The phase's data to verify.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>bool</code></td><td>True if the tag is empty, false otherwise.</td></tr>
+<tr><td><code>&lt;none&gt;</code></td><td><code>bool</code></td><td>True if the phase is empty, false otherwise.</td></tr>
 </tbody></table>
 </div>
-<h3 id="_issummedmaxtagcapltegrandtotal"><a class="header" href="#_issummedmaxtagcapltegrandtotal">_isSummedMaxTagCapLteGrandTotal</a></h3>
-<p>Verify whether the sum of all max amount to raise per tag is lower than or equal to the
+<h3 id="_issummedmaxphasecapltegrandtotal"><a class="header" href="#_issummedmaxphasecapltegrandtotal">_isSummedMaxPhaseCapLteGrandTotal</a></h3>
+<p>Verify whether the sum of all max amount to raise per phase is lower than or equal to the
 grand total.</p>
-<p><em>reverts if <code>summedMaxTagCap</code> is greater than <code>grandTotal</code>.</em></p>
-<pre><code class="language-solidity">function _isSummedMaxTagCapLteGrandTotal(uint256 summedMaxTagCap, uint256 grandTotal) internal pure;
+<p><em>reverts if <code>summedMaxPhaseCap</code> is greater than <code>grandTotal</code>.</em></p>
+<pre><code class="language-solidity">function _isSummedMaxPhaseCapLteGrandTotal(uint256 summedMaxPhaseCap, uint256 grandTotal) internal pure;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="igowritable"><a class="header" href="#igowritable">IGOWritable</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/IGOWritable.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/IGOWritable.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/writable/IGOWritable.sol//src/writable/IIGOWritable.sol/interface.IIGOWritable.html">IIGOWritable</a>, <a href="src/writable/IGOWritable.sol//src/writable/IGOWritableInternal.sol/contract.IGOWritableInternal.html">IGOWritableInternal</a>, <a href="src/writable/IGOWritable.sol//src/writable/restricted/RestrictedWritable.sol/contract.RestrictedWritable.html">RestrictedWritable</a>, ReentrancyGuard</p>
 <p>Public and external functions which modify the storage of the IGO.</p>
 <h2 id="functions-14"><a class="header" href="#functions-14">Functions</a></h2>
 <h3 id="reserveallocation"><a class="header" href="#reserveallocation">reserveAllocation</a></h3>
-<p>Reserve an allocation on-chain for a specific tag.</p>
+<p>Reserve an allocation on-chain for a specific phase.</p>
 <pre><code class="language-solidity">function reserveAllocation(
     uint256 amount,
     Allocation calldata allocation,
@@ -1999,12 +2005,12 @@ grand total.</p>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>amount</code></td><td><code>uint256</code></td><td>Amount of tokens to buy in this transaction, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
-<tr><td><code>allocation</code></td><td><code>Allocation</code></td><td>Allocation generated for a wallet for a specific tag.</td></tr>
+<tr><td><code>allocation</code></td><td><code>Allocation</code></td><td>Allocation generated for a wallet for a specific phase.</td></tr>
 <tr><td><code>proof</code></td><td><code>bytes32[]</code></td><td>Merkle proof to verify the validity of the allocation.</td></tr>
 <tr><td><code>permission</code></td><td><code>BuyPermission</code></td><td>Permission granted by user off-chain using {Permit2}.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="igowritableinternal"><a class="header" href="#igowritableinternal">IGOWritableInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/IGOWritableInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/IGOWritableInternal.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/writable/IGOWritableInternal.sol//src/writable/IIGOWritableInternal.sol/interface.IIGOWritableInternal.html">IIGOWritableInternal</a></p>
 <p>Defines internal functions for <code>IGOWritable</code>.</p>
@@ -2028,37 +2034,37 @@ grand total.</p>
 <p><em>{Permit2} library call</em></p>
 <pre><code class="language-solidity">function _closeIGO() internal;
 </code></pre>
-<h3 id="_closetag"><a class="header" href="#_closetag">_closeTag</a></h3>
-<pre><code class="language-solidity">function _closeTag(string memory tagId) internal;
+<h3 id="_closephase"><a class="header" href="#_closephase">_closePhase</a></h3>
+<pre><code class="language-solidity">function _closePhase(string memory phaseId) internal;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Tag identifier to close.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Phase identifier to close.</td></tr>
 </tbody></table>
 </div>
 <h3 id="_updatestorageonbuy"><a class="header" href="#_updatestorageonbuy">_updateStorageOnBuy</a></h3>
 <p>Update storage of the IGO when an allocation is reserved on-chain: total raised, total raised
-in tag, allocation reserved by buyer in tag, etc...</p>
+in phase, allocation reserved by buyer in phase, etc...</p>
 <pre><code class="language-solidity">function _updateStorageOnBuy(
     uint256 amount,
-    string calldata tagId,
+    string calldata phaseId,
     address buyer,
     uint256 grandTotal,
-    uint256 maxTagCap
+    uint256 maxPhaseCap
 ) internal;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>amount</code></td><td><code>uint256</code></td><td>Amount of tokens bought in this transaction, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Tag linked to current allocation used by buyer.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Phase linked to current allocation used by buyer.</td></tr>
 <tr><td><code>buyer</code></td><td><code>address</code></td><td>Wallet buying tokens.</td></tr>
 <tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>Total amount of tokens to be sold in this IGO, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
-<tr><td><code>maxTagCap</code></td><td><code>uint256</code></td><td>Maximum amount of tokens to be sold in this tag, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
+<tr><td><code>maxPhaseCap</code></td><td><code>uint256</code></td><td>Maximum amount of tokens to be sold in this phase, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
 </tbody></table>
 </div>
-<h3 id="_requireallocationnotexceededintag"><a class="header" href="#_requireallocationnotexceededintag">_requireAllocationNotExceededInTag</a></h3>
-<p>Ensure a wallet can not buy more than their allocation for the given tag.</p>
-<pre><code class="language-solidity">function _requireAllocationNotExceededInTag(uint256 toBuy, address buyer, uint256 allocated, string calldata tagId)
+<h3 id="_requireallocationnotexceededinphase"><a class="header" href="#_requireallocationnotexceededinphase">_requireAllocationNotExceededInPhase</a></h3>
+<p>Ensure a wallet can not buy more than their allocation for the given phase.</p>
+<pre><code class="language-solidity">function _requireAllocationNotExceededInPhase(uint256 toBuy, address buyer, uint256 allocated, string calldata phaseId)
     internal
     view;
 </code></pre>
@@ -2066,8 +2072,8 @@ in tag, allocation reserved by buyer in tag, etc...</p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>toBuy</code></td><td><code>uint256</code></td><td>Amount of tokens to buy in this transaction, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
 <tr><td><code>buyer</code></td><td><code>address</code></td><td>Wallet buying tokens.</td></tr>
-<tr><td><code>allocated</code></td><td><code>uint256</code></td><td>Maximum amount of tokens this wallet can buy in this tag, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>allocated</code></td><td><code>uint256</code></td><td>Maximum amount of tokens this wallet can buy in this phase, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td></td></tr>
 </tbody></table>
 </div>
 <h3 id="_requireauthorizedaccount"><a class="header" href="#_requireauthorizedaccount">_requireAuthorizedAccount</a></h3>
@@ -2088,18 +2094,18 @@ in tag, allocation reserved by buyer in tag, etc...</p>
 <p>Verify IGO is opened.</p>
 <pre><code class="language-solidity">function _requireOpenedIGO() internal view;
 </code></pre>
-<h3 id="_requireopenedtag"><a class="header" href="#_requireopenedtag">_requireOpenedTag</a></h3>
-<p>Verify tag is opened.</p>
-<pre><code class="language-solidity">function _requireOpenedTag(string memory tagId) internal;
+<h3 id="_requireopenedphase"><a class="header" href="#_requireopenedphase">_requireOpenedPhase</a></h3>
+<p>Verify phase is opened.</p>
+<pre><code class="language-solidity">function _requireOpenedPhase(string memory phaseId) internal;
 </code></pre>
-<h3 id="_requiretagcapnotexceeded"><a class="header" href="#_requiretagcapnotexceeded">_requireTagCapNotExceeded</a></h3>
-<p>Verify <code>maxTagCap</code> will not be exceeded after purchase.</p>
-<pre><code class="language-solidity">function _requireTagCapNotExceeded(string calldata tagId, uint256 maxTagCap, uint256 toBuy) internal view;
+<h3 id="_requirephasecapnotexceeded"><a class="header" href="#_requirephasecapnotexceeded">_requirePhaseCapNotExceeded</a></h3>
+<p>Verify <code>maxPhaseCap</code> will not be exceeded after purchase.</p>
+<pre><code class="language-solidity">function _requirePhaseCapNotExceeded(string calldata phaseId, uint256 maxPhaseCap, uint256 toBuy) internal view;
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Tag linked to current allocation used by buyer.</td></tr>
-<tr><td><code>maxTagCap</code></td><td><code>uint256</code></td><td>Maximum amount of tokens to be sold in this tag, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Phase linked to current allocation used by buyer.</td></tr>
+<tr><td><code>maxPhaseCap</code></td><td><code>uint256</code></td><td>Maximum amount of tokens to be sold in this phase, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
 <tr><td><code>toBuy</code></td><td><code>uint256</code></td><td>Amount of tokens to buy in this transaction, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
 </tbody></table>
 </div>
@@ -2113,10 +2119,10 @@ in tag, allocation reserved by buyer in tag, etc...</p>
 <tr><td><code>proof</code></td><td><code>bytes32[]</code></td><td>Merkle proof of the allocation.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="iigowritable"><a class="header" href="#iigowritable">IIGOWritable</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/IIGOWritable.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/IIGOWritable.sol">Git Source</a></p>
 <h2 id="functions-16"><a class="header" href="#functions-16">Functions</a></h2>
 <h3 id="reserveallocation-1"><a class="header" href="#reserveallocation-1">reserveAllocation</a></h3>
-<p>Reserve an allocation on-chain for a specific tag.</p>
+<p>Reserve an allocation on-chain for a specific phase.</p>
 <pre><code class="language-solidity">function reserveAllocation(
     uint256 amount,
     IIGOWritableInternal.Allocation calldata allocation,
@@ -2127,18 +2133,18 @@ in tag, allocation reserved by buyer in tag, etc...</p>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>amount</code></td><td><code>uint256</code></td><td>Amount of tokens to buy in this transaction, expressed in {IGOStorage.SetUp.paymentToken}.</td></tr>
-<tr><td><code>allocation</code></td><td><code>IIGOWritableInternal.Allocation</code></td><td>Allocation generated for a wallet for a specific tag.</td></tr>
+<tr><td><code>allocation</code></td><td><code>IIGOWritableInternal.Allocation</code></td><td>Allocation generated for a wallet for a specific phase.</td></tr>
 <tr><td><code>proof</code></td><td><code>bytes32[]</code></td><td>Merkle proof to verify the validity of the allocation.</td></tr>
 <tr><td><code>permission</code></td><td><code>IIGOWritableInternal.BuyPermission</code></td><td>Permission granted by user off-chain using {Permit2}.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="iigowritableinternal"><a class="header" href="#iigowritableinternal">IIGOWritableInternal</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/writable/IIGOWritableInternal.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/writable/IIGOWritableInternal.sol">Git Source</a></p>
 <p>Internal interface of <code>IGOWritable</code> which defines strcutures, events  and errors.</p>
 <h2 id="events-4"><a class="header" href="#events-4">Events</a></h2>
 <h3 id="allocationreserved"><a class="header" href="#allocationreserved">AllocationReserved</a></h3>
 <p>Emitted only in {IGOWritable.reserveAllocation}.</p>
 <pre><code class="language-solidity">event AllocationReserved(
-    string indexed tagId, address indexed buyer, uint256 indexed maxAllocation, address paymentToken
+    string indexed phaseId, address indexed buyer, uint256 indexed maxAllocation, address paymentToken
 );
 </code></pre>
 <h2 id="errors-6"><a class="header" href="#errors-6">Errors</a></h2>
@@ -2150,9 +2156,9 @@ in tag, allocation reserved by buyer in tag, etc...</p>
 <p>Thrown when the grand total to be raised for this IGO is exceeded.</p>
 <pre><code class="language-solidity">error IGOWritable_GrandTotalExceeded(uint256 grandTotal, uint256 exceedsBy);
 </code></pre>
-<h3 id="igowritable_maxtagcapexceeded"><a class="header" href="#igowritable_maxtagcapexceeded">IGOWritable_MaxTagCapExceeded</a></h3>
-<p>Thrown when the cap (maximum amount) of the current tag is exceeded.</p>
-<pre><code class="language-solidity">error IGOWritable_MaxTagCapExceeded(string tagId, uint256 maxTagCap, uint256 exceedsBy);
+<h3 id="igowritable_maxphasecapexceeded"><a class="header" href="#igowritable_maxphasecapexceeded">IGOWritable_MaxPhaseCapExceeded</a></h3>
+<p>Thrown when the cap (maximum amount) of the current phase is exceeded.</p>
+<pre><code class="language-solidity">error IGOWritable_MaxPhaseCapExceeded(string phaseId, uint256 maxPhaseCap, uint256 exceedsBy);
 </code></pre>
 <h3 id="igowritableinternal_accountnotauthorized"><a class="header" href="#igowritableinternal_accountnotauthorized">IGOWritableInternal_AccountNotAuthorized</a></h3>
 <p>Thrown when <code>msg.sender</code> is not the buyer.</p>
@@ -2166,13 +2172,13 @@ in tag, allocation reserved by buyer in tag, etc...</p>
 <p>Thrown when the IGO is not opened.</p>
 <pre><code class="language-solidity">error IGOWritableInternal_IGONotOpened(ISharedInternal.Status current);
 </code></pre>
-<h3 id="igowritableinternal_tagnotopened"><a class="header" href="#igowritableinternal_tagnotopened">IGOWritableInternal_TagNotOpened</a></h3>
-<p>Thrown when the tag is not opened.</p>
-<pre><code class="language-solidity">error IGOWritableInternal_TagNotOpened(string tagId, ISharedInternal.Status current);
+<h3 id="igowritableinternal_phasenotopened"><a class="header" href="#igowritableinternal_phasenotopened">IGOWritableInternal_PhaseNotOpened</a></h3>
+<p>Thrown when the phase is not opened.</p>
+<pre><code class="language-solidity">error IGOWritableInternal_PhaseNotOpened(string phaseId, ISharedInternal.Status current);
 </code></pre>
 <h2 id="structs-4"><a class="header" href="#structs-4">Structs</a></h2>
 <h3 id="allocation"><a class="header" href="#allocation">Allocation</a></h3>
-<p>Struct representing an allocation of a wallet for a specific tag for
+<p>Struct representing an allocation of a wallet for a specific phase for
 {IGOWritable.reserveAllocation} function.</p>
 <p>*Backend is in charge of generating an allocation, which will depends on the sale type:</p>
 <ul>
@@ -2183,7 +2189,7 @@ in-game tasks: +33% from base price,
 etc...*</li>
 </ul>
 <pre><code class="language-solidity">struct Allocation {
-    string tagId;
+    string phaseId;
     address account;
     uint256 maxAllocation;
     uint256 refundFee;
@@ -2202,7 +2208,7 @@ etc...*</li>
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="igo"><a class="header" href="#igo">IGO</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/IGO.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/IGO.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="src/IGO.sol//src/readable/IGOReadable.sol/contract.IGOReadable.html">IGOReadable</a>, <a href="src/IGO.sol//src/writable/IGOWritable.sol/contract.IGOWritable.html">IGOWritable</a></p>
 <p><strong>Author:</strong>
@@ -2211,7 +2217,7 @@ https://github.com/Theo6890</p>
 <code>IGOWritable</code>.</p>
 <p><em>Constructor has been replaced by the <code>initialize</code> function in {IGOWritable}.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="igostorage"><a class="header" href="#igostorage">IGOStorage</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/IGOStorage.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/IGOStorage.sol">Git Source</a></p>
 <p><strong>Author:</strong>
 https://github.com/Theo6890</p>
 <p>Mapps the storage layout of the {IGO} contract.</p>
@@ -2238,17 +2244,17 @@ https://github.com/Theo6890</p>
     address paymentToken;
     address permit2;
     uint256 grandTotal;
-    uint256 summedMaxTagCap;
+    uint256 summedMaxPhaseCap;
     uint256 refundFeeDecimals;
 }
 </code></pre>
-<h3 id="tags"><a class="header" href="#tags">Tags</a></h3>
-<p>Struct reprensenting the setup of each tag of the IGO.</p>
-<p><em>Status of the tag is the only value that can be updated by IGO contract itself due to user's
+<h3 id="phases"><a class="header" href="#phases">Phases</a></h3>
+<p>Struct reprensenting the setup of each phase of the IGO.</p>
+<p><em>Status of the phase is the only value that can be updated by IGO contract itself due to user's
 interactions with the contract.</em></p>
-<pre><code class="language-solidity">struct Tags {
+<pre><code class="language-solidity">struct Phases {
     string[] ids;
-    mapping(string =&gt; ISharedInternal.Tag) data;
+    mapping(string =&gt; ISharedInternal.Phase) data;
 }
 </code></pre>
 <h3 id="ledger"><a class="header" href="#ledger">Ledger</a></h3>
@@ -2257,7 +2263,7 @@ the IGO contract.</p>
 <pre><code class="language-solidity">struct Ledger {
     ISharedInternal.Status status;
     uint256 totalRaised;
-    mapping(string =&gt; uint256) raisedInTag;
+    mapping(string =&gt; uint256) raisedInPhase;
     mapping(address =&gt; mapping(string =&gt; uint256)) allocationReservedByIn;
 }
 </code></pre>
@@ -2265,7 +2271,7 @@ the IGO contract.</p>
 <p>Struct reprensenting the whole storage layout of the IGO contract.</p>
 <pre><code class="language-solidity">struct IGOStruct {
     SetUp setUp;
-    Tags tags;
+    Phases phases;
     Ledger ledger;
 }
 </code></pre>

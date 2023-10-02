@@ -171,23 +171,23 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="igoreadable"><a class="header" href="#igoreadable">IGOReadable</a></h1>
-<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/d6693231e35b6340a8ef1dbf9ec0e6b946a0f14c/src/readable/IGOReadable.sol">Git Source</a></p>
+<p><a href="https://github.com/Seedifyfund/igo-all-in-one/blob/a1ea820db2935e9447d34ebcb53a8023a304fcce/src/readable/IGOReadable.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/src/readable/IIGOReadable.sol/interface.IIGOReadable.html">IIGOReadable</a>, <a href="/src/writable/IIGOWritableInternal.sol/interface.IIGOWritableInternal.html">IIGOWritableInternal</a>, <a href="/src/writable/restricted/IRestrictedWritableInternal.sol/interface.IRestrictedWritableInternal.html">IRestrictedWritableInternal</a>, <a href="/src/shared/ISharedInternal.sol/interface.ISharedInternal.html">ISharedInternal</a></p>
 <p>Read-only contract of {IGO} data.</p>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="allocationreservedbyin"><a class="header" href="#allocationreservedbyin">allocationReservedByIn</a></h3>
-<pre><code class="language-solidity">function allocationReservedByIn(address account, string calldata tagId) external view override returns (uint256);
+<pre><code class="language-solidity">function allocationReservedByIn(address account, string calldata phaseId) external view override returns (uint256);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>account</code></td><td><code>address</code></td><td>Address of the user.</td></tr>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} paid by <code>account</code> for the tag <code>tagId</code>.</td></tr>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} paid by <code>account</code> for the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
 <h3 id="igostatus"><a class="header" href="#igostatus">igoStatus</a></h3>
@@ -198,17 +198,17 @@
 <tr><td><code>&lt;none&gt;</code></td><td><code>Status</code></td><td>Enum representing the current status of the IGO.</td></tr>
 </tbody></table>
 </div>
-<h3 id="raisedintag"><a class="header" href="#raisedintag">raisedInTag</a></h3>
-<pre><code class="language-solidity">function raisedInTag(string memory tagId) external view override returns (uint256);
+<h3 id="raisedinphase"><a class="header" href="#raisedinphase">raisedInPhase</a></h3>
+<pre><code class="language-solidity">function raisedInPhase(string memory phaseId) external view override returns (uint256);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} raised for the tag <code>tagId</code>.</td></tr>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Amount of {IGOStorage.SetUp.paymentToken} raised for the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
 <h3 id="setup"><a class="header" href="#setup">setUp</a></h3>
@@ -220,7 +220,7 @@
         address vestingContract,
         address paymentToken,
         uint256 grandTotal,
-        uint256 summedMaxTagCap,
+        uint256 summedMaxPhaseCap,
         uint256 refundFeeDecimals
     );
 </code></pre>
@@ -228,30 +228,30 @@
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>vestingContract</code></td><td><code>address</code></td><td>Address of the {IGOVesting} contract.</td></tr>
 <tr><td><code>paymentToken</code></td><td><code>address</code></td><td>Address of the default token used to reserve allocation through the IGO.</td></tr>
-<tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>Maximum amount of paymentToken that can be raised for this IGO accross all tags.</td></tr>
-<tr><td><code>summedMaxTagCap</code></td><td><code>uint256</code></td><td>Sum of maximum cap of each tag, which can be lower or equal to <code>grandTotal</code>.</td></tr>
+<tr><td><code>grandTotal</code></td><td><code>uint256</code></td><td>Maximum amount of paymentToken that can be raised for this IGO accross all phases.</td></tr>
+<tr><td><code>summedMaxPhaseCap</code></td><td><code>uint256</code></td><td>Sum of maximum cap of each phase, which can be lower or equal to <code>grandTotal</code>.</td></tr>
 <tr><td><code>refundFeeDecimals</code></td><td><code>uint256</code></td><td>Number of decimals used for {IIGOWritableInternal.Allocation.refundFee}.</td></tr>
 </tbody></table>
 </div>
-<h3 id="tag"><a class="header" href="#tag">tag</a></h3>
-<pre><code class="language-solidity">function tag(string memory tagId) external view override returns (Tag memory tag_);
+<h3 id="phase"><a class="header" href="#phase">phase</a></h3>
+<pre><code class="language-solidity">function phase(string memory phaseId) external view override returns (Phase memory phase_);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagId</code></td><td><code>string</code></td><td>Identifier of the tag.</td></tr>
+<tr><td><code>phaseId</code></td><td><code>string</code></td><td>Identifier of the phase.</td></tr>
 </tbody></table>
 </div>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tag_</code></td><td><code>Tag</code></td><td>Tag struct representing the data of the tag <code>tagId</code>.</td></tr>
+<tr><td><code>phase_</code></td><td><code>Phase</code></td><td>Phase struct representing the data of the phase <code>phaseId</code>.</td></tr>
 </tbody></table>
 </div>
-<h3 id="tagids"><a class="header" href="#tagids">tagIds</a></h3>
-<pre><code class="language-solidity">function tagIds() external view override returns (string[] memory tagIds_);
+<h3 id="phaseids"><a class="header" href="#phaseids">phaseIds</a></h3>
+<pre><code class="language-solidity">function phaseIds() external view override returns (string[] memory phaseIds_);
 </code></pre>
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>tagIds_</code></td><td><code>string[]</code></td><td>List of all tags identifiers.</td></tr>
+<tr><td><code>phaseIds_</code></td><td><code>string[]</code></td><td>List of all phases identifiers.</td></tr>
 </tbody></table>
 </div>
 <h3 id="totalraised"><a class="header" href="#totalraised">totalRaised</a></h3>
